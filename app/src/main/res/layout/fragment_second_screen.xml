@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="309dp"
             android:layout_marginTop="80dp"
-            android:src="@drawable/iv_wave_3" />
+            android:src="@drawable/iv_onboard_2" />
 
         <TextView
             style="@style/heading2"

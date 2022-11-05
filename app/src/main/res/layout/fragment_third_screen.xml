@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="309dp"
             android:layout_marginTop="80dp"
-            android:src="@drawable/iv_wave_1" />
+            android:src="@drawable/iv_onboard_3" />
 
         <TextView
             style="@style/heading2"

@@ -11,4 +11,8 @@
     <string name="third_onboard">Tunggu apalagi, \nAyo mulai bermain!</string>
     <string name="start">Let’s Started</string>
     <string name="first_onboard">Kulineran sambil menyelesaikan misi</string>
+    <string name="create_account">Buat Akun</string>
+    <string name="or_signup_with">Atau daftar dengan</string>
+    <string name="next">Selanjutnya</string>
+    <string name="masuk">Masuk</string>
 </resources>

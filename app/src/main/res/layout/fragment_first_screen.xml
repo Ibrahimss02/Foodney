@@ -18,10 +18,11 @@
 
         <!--TODO : CHANGE IMAGE-->
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="309dp"
             android:layout_marginTop="80dp"
-            android:src="@drawable/iv_wave_3" />
+            android:layout_marginStart="120dp"
+            android:src="@drawable/iv_onboard_1" />
 
         <TextView
             style="@style/heading2"
