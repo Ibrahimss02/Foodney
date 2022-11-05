@@ -7,4 +7,8 @@
     <string name="papan_peringkat">Papan Peringkat</string>
     <string name="kupon">Kupon</string>
     <string name="profil">Profil</string>
+    <string name="second_onboard">Selesaikan misi dan dapatkan hadiah menarik</string>
+    <string name="third_onboard">Tunggu apalagi, \nAyo mulai bermain!</string>
+    <string name="start">Let’s Started</string>
+    <string name="first_onboard">Kulineran sambil menyelesaikan misi</string>
 </resources>
