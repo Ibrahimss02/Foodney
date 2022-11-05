@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.raion.foodney">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,9 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodney"
         tools:targetApi="31">
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyABql2UNuCa3P9HWfwbWnsYTC4PslPQoho"/>
+            android:value="AIzaSyABql2UNuCa3P9HWfwbWnsYTC4PslPQoho" />
 
         <activity
             android:name=".MainActivity"
@@ -31,7 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".utils.GeofenceBroadcastReceiver"/>
+
+        <receiver android:name=".utils.GeofenceBroadcastReceiver" />
     </application>
 
 </manifest>

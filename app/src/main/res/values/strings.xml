@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Foodney</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="list_warung">List Warung</string>
+    <string name="papan_peringkat">Papan Peringkat</string>
+    <string name="kupon">Kupon</string>
+    <string name="profil">Profil</string>
 </resources>

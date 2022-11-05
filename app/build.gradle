@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
 }
@@ -12,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.raion.foodney"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -58,7 +57,7 @@ dependencies {
 
     // Google Play Services
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    implementation 'com.google.android.gms:play-services-location:21.0.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 
     // Lifecycle & LiveData
     def lifecycle_version = "2.6.0-alpha03"

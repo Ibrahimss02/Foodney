@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.raion.foodney.ui.mainScreens.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/warungListFragment"
+        android:name="com.raion.foodney.ui.mainScreens.warungList.WarungListFragment"
+        android:label="fragment_warung_list"
+        tools:layout="@layout/fragment_warung_list" />
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.raion.foodney.ui.mainScreens.leaderboard.LeaderboardFragment"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
+    <fragment
+        android:id="@+id/couponRedeemFragment"
+        android:name="com.raion.foodney.ui.mainScreens.coupunRedeem.CouponRedeemFragment"
+        android:label="fragment_coupon_redeem"
+        tools:layout="@layout/fragment_coupon_redeem" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.raion.foodney.ui.mainScreens.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/detailMissionFragment"
+        android:name="com.raion.foodney.ui.mainScreens.missionDetail.DetailMissionFragment"
+        android:label="fragment_detail_mission"
+        tools:layout="@layout/fragment_detail_mission" />
+</navigation>
