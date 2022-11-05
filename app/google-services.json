@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "158861790353",
+    "project_id": "foodney-49058",
+    "storage_bucket": "foodney-49058.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158861790353:android:452235a2be02967542c330",
+        "android_client_info": {
+          "package_name": "com.raion.foodney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158861790353-3shgkdvfead5pb9vugu2t8fsh9q9l8vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmvUjJ3Q4xsvjRu1TMve38q3DYtxc6N2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158861790353-3shgkdvfead5pb9vugu2t8fsh9q9l8vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
