@@ -23,9 +23,43 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="480dp"
-            app:dotsColor="@color/gray"
+            app:dotsColor="@color/black"
+            app:dotsStrokeColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/fab_next_page"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_next_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="42dp"
+            android:src="@drawable/ic_arrow_right"
+            app:tint="@color/white"
+            android:importantForAccessibility="no"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/indicator"
+            app:layout_constraintTop_toTopOf="@id/indicator"
+            app:layout_constraintBottom_toBottomOf="@id/indicator"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ayo_mulai"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/indicator"
+            app:layout_constraintBottom_toBottomOf="@id/indicator"
+            app:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:visibility="invisible"
+            app:cornerRadius="24dp"
+            android:layout_marginEnd="42dp"
+            android:alpha="0"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

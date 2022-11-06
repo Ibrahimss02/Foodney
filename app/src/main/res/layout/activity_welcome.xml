@@ -7,6 +7,7 @@
     tools:context=".WelcomeActivity">
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/welcome_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:navGraph="@navigation/welcome_navigation"
