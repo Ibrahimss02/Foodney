@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="180dp"
+        android:layout_height="226dp"
+        android:padding="4dp"
+        app:cardBackgroundColor="@color/gray"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="24dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_umkm"
+                android:layout_width="160dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/umkm_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/iv_umkm" />
+
+            <TextView
+                android:id="@+id/tv_umkm"
+                style="@style/body2"
+                android:layout_width="160dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintStart_toStartOf="@id/iv_umkm"
+                app:layout_constraintTop_toBottomOf="@id/iv_umkm"
+                tools:text="Mie Bakar Celaket" />
+
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/iv_location"
+                app:layout_constraintStart_toStartOf="@id/tv_umkm"
+                app:layout_constraintTop_toBottomOf="@id/tv_umkm"
+                android:contentDescription="@string/location" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/caption"
+                android:layout_width="120dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/dark_grey"
+                app:layout_constraintBottom_toBottomOf="@id/iv_location"
+                app:layout_constraintStart_toEndOf="@id/iv_location"
+                app:layout_constraintTop_toTopOf="@id/iv_location"
+                tools:text="Kota Malang" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/iv_coin"
+                app:layout_constraintBottom_toBottomOf="@id/tv_location"
+                app:layout_constraintStart_toEndOf="@id/tv_location"
+                app:layout_constraintTop_toTopOf="@id/tv_location"
+                android:contentDescription="@string/coin" />
+
+            <ImageView
+                android:id="@+id/iv_distance"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/iv_distance"
+                app:layout_constraintStart_toStartOf="@id/iv_location"
+                app:layout_constraintTop_toBottomOf="@id/iv_location"
+                android:contentDescription="@string/distance" />
+
+            <TextView
+                android:id="@+id/tv_distance"
+                style="@style/caption"
+                android:layout_width="64dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/dark_grey"
+                app:layout_constraintBottom_toBottomOf="@id/iv_distance"
+                app:layout_constraintStart_toEndOf="@id/iv_distance"
+                app:layout_constraintTop_toTopOf="@id/iv_distance"
+                tools:text="24 Meter" />
+
+            <TextView
+                android:id="@+id/tv_point"
+                style="@style/heading3"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                app:layout_constraintBottom_toBottomOf="@id/tv_distance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_distance"
+                tools:text="+ 30" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
