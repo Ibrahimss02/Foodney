@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentOnBoardingBinding
@@ -42,6 +43,10 @@ class OnBoardingFragment : Fragment() {
 
         binding.fabNextPage.setOnClickListener {
             binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+        }
+
+        binding.startButton.setOnClickListener {
+            findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToSignInFragment())
         }
 
         return binding.root
