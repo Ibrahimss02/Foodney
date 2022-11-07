@@ -16,4 +16,17 @@
     <string name="next">Selanjutnya</string>
     <string name="masuk">Masuk</string>
     <string name="ayo_mulai">Ayo Mulai</string>
+    <string name="app_logo">app_logo</string>
+    <string name="avatar">avatar</string>
+    <string name="home_title">Ayo berkeliling dan makan!</string>
+    <string name="star">star</string>
+    <string name="vertical_line">vertical_line</string>
+    <string name="total_point">Total Point</string>
+    <string name="level">Level</string>
+    <string name="misi">Misi</string>
+    <string name="arrow_right">arrow_right</string>
+    <string name="umkm_image">umkm_image</string>
+    <string name="location">Location</string>
+    <string name="coin">Coin</string>
+    <string name="distance">Distance</string>
 </resources>
