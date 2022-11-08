@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="mission"
+            type="com.raion.foodney.models.Mission" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -28,7 +30,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/iv_umkm" />
+                android:src="@drawable/iv_umkm" />
 
             <TextView
                 android:id="@+id/tv_umkm"
@@ -38,6 +40,7 @@
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{mission.name}"
                 app:layout_constraintStart_toStartOf="@id/iv_umkm"
                 app:layout_constraintTop_toBottomOf="@id/iv_umkm"
                 tools:text="Mie Bakar Celaket" />
@@ -62,6 +65,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/dark_grey"
+                android:text="@{mission.warung.address}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_location"
                 app:layout_constraintStart_toEndOf="@id/iv_location"
                 app:layout_constraintTop_toTopOf="@id/iv_location"
@@ -97,6 +101,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/dark_grey"
+                android:text="@{@string/distance(mission.distance)}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_distance"
                 app:layout_constraintStart_toEndOf="@id/iv_distance"
                 app:layout_constraintTop_toTopOf="@id/iv_distance"
@@ -113,10 +118,11 @@
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
+                android:text="@{@string/mission_reward(mission.coinReward)}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_distance"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_distance"
-                tools:text="+ 30" />
+                tools:text="+ 30"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

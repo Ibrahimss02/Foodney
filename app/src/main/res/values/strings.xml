@@ -28,5 +28,6 @@
     <string name="umkm_image">umkm_image</string>
     <string name="location">Location</string>
     <string name="coin">Coin</string>
-    <string name="distance">Distance</string>
+    <string name="mission_reward">+ %d</string>
+    <string name="distance">%d Meter</string>
 </resources>
