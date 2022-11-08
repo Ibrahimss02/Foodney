@@ -30,4 +30,8 @@
     <string name="coin">Coin</string>
     <string name="mission_reward">+ %d</string>
     <string name="distance">%d Meter</string>
+    <string name="email">Email</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="nama_pengguna">Nama Pengguna</string>
+    <string name="kata_sandi_repeat">Ulang Kata Sandi</string>
 </resources>

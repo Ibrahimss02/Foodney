@@ -57,23 +57,19 @@
         <!-- Email Configuration-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.App.TextInputLayout"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Email"
+            android:hint="@string/email"
             app:boxCornerRadiusBottomEnd="36dp"
             app:boxCornerRadiusBottomStart="36dp"
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
-            app:boxStrokeColor="@color/light_gray"
             app:endIconMode="clear_text"
-            app:hintTextColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="@id/tv_login"
             app:layout_constraintTop_toBottomOf="@id/tv_login"
-            app:placeholderText="Email"
-            app:placeholderTextAppearance="@style/caption"
-            app:placeholderTextColor="@color/light_gray">
+            app:placeholderText="Email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_email"
@@ -87,23 +83,20 @@
         <!-- Password Confirmation Configuration-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.App.TextInputLayout"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Kata Sandi"
+            android:hint="@string/kata_sandi"
             app:boxCornerRadiusBottomEnd="36dp"
             app:boxCornerRadiusBottomStart="36dp"
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
-            app:boxStrokeColor="@color/light_gray"
             app:endIconMode="password_toggle"
-            app:hintTextColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="@id/textinput_email"
             app:layout_constraintTop_toBottomOf="@id/textinput_email"
             app:placeholderText="Kata Sandi"
-            app:placeholderTextAppearance="@style/caption"
-            app:placeholderTextColor="@color/light_gray">
+            app:placeholderTextAppearance="@style/caption">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_password_confirmation"

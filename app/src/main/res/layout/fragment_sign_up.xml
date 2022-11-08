@@ -47,23 +47,20 @@
         <!-- Username Configuration-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.App.TextInputLayout"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Nama Pengguna"
+            android:hint="@string/nama_pengguna"
             app:boxCornerRadiusBottomEnd="36dp"
             app:boxCornerRadiusBottomStart="36dp"
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
-            app:boxStrokeColor="@color/light_gray"
             app:endIconMode="clear_text"
-            app:hintTextColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="@id/tv_signup"
             app:layout_constraintTop_toBottomOf="@id/tv_signup"
             app:placeholderText="Nama Pengguna"
-            app:placeholderTextAppearance="@style/caption"
-            app:placeholderTextColor="@color/light_gray">
+            app:placeholderTextAppearance="@style/caption">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_username"
@@ -76,23 +73,20 @@
         <!-- Email Configuration-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.App.TextInputLayout"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Email"
+            android:hint="@string/email"
             app:boxCornerRadiusBottomEnd="36dp"
             app:boxCornerRadiusBottomStart="36dp"
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
-            app:boxStrokeColor="@color/light_gray"
             app:endIconMode="clear_text"
-            app:hintTextColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="@id/tv_signup"
             app:layout_constraintTop_toBottomOf="@id/textinput_username"
             app:placeholderText="Email"
-            app:placeholderTextAppearance="@style/caption"
-            app:placeholderTextColor="@color/light_gray">
+            app:placeholderTextAppearance="@style/caption">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_email"
@@ -105,23 +99,20 @@
         <!-- Password Configuration-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.App.TextInputLayout"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Ulang Kata Sandi"
+            android:hint="@string/kata_sandi"
             app:boxCornerRadiusBottomEnd="36dp"
             app:boxCornerRadiusBottomStart="36dp"
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
-            app:boxStrokeColor="@color/light_gray"
             app:endIconMode="password_toggle"
-            app:hintTextColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="@id/tv_signup"
             app:layout_constraintTop_toBottomOf="@id/textinput_email"
             app:placeholderText="Ulang Kata Sandi"
-            app:placeholderTextAppearance="@style/caption"
-            app:placeholderTextColor="@color/light_gray">
+            app:placeholderTextAppearance="@style/caption">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_password"
@@ -134,23 +125,20 @@
         <!-- Password Confirmation Configuration-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_password_confirmation"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.App.TextInputLayout"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Ulang Kata Sandi"
+            android:hint="@string/kata_sandi_repeat"
             app:boxCornerRadiusBottomEnd="36dp"
             app:boxCornerRadiusBottomStart="36dp"
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
-            app:boxStrokeColor="@color/light_gray"
             app:endIconMode="password_toggle"
-            app:hintTextColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="@id/tv_signup"
             app:layout_constraintTop_toBottomOf="@id/textinput_password"
             app:placeholderText="Ulang Kata Sandi"
-            app:placeholderTextAppearance="@style/caption"
-            app:placeholderTextColor="@color/light_gray">
+            app:placeholderTextAppearance="@style/caption">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_password_confirmation"
@@ -234,7 +222,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/tv_daftar"
+                android:id="@+id/tv_masuk"
                 style="@style/body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    TODO: ADD ICON-->
     <item
-        android:id="@+id/fragment_home"
+        android:id="@+id/homeFragment"
         android:title="@string/home"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:icon="@drawable/ic_home"/>
 
     <item
-        android:id="@+id/fragment_warung_list"
-        android:title="@string/list_warung"/>
+        android:id="@+id/warungListFragment"
+        android:title="@string/list_warung"
+        android:icon="@drawable/ic_mission"/>
 
     <item
-        android:id="@+id/fragment_leaderboard"
-        android:title="@string/papan_peringkat"/>
+        android:id="@+id/leaderboardFragment"
+        android:title="@string/papan_peringkat"
+        android:icon="@drawable/ic_leaderboard"/>
 
     <item
-        android:id="@+id/fragment_coupon_redeem"
-        android:title="@string/kupon"/>
+        android:id="@+id/couponRedeemFragment"
+        android:title="@string/kupon"
+        android:icon="@drawable/ic_coupon"/>
 
     <item
-        android:id="@+id/fragment_profile"
-        android:title="@string/profil"/>
-
-
+        android:id="@+id/profileFragment"
+        android:title="@string/profil"
+        android:icon="@drawable/ic_profile"/>
 </menu>
