@@ -37,7 +37,7 @@
             style="@style/heading2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="108dp"
             android:text="@string/create_account"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +48,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_username"
             style="@style/Widget.App.TextInputLayout"
-            android:layout_width="272dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="16dp"
             android:hint="@string/nama_pengguna"
             app:boxCornerRadiusBottomEnd="36dp"
@@ -57,7 +58,7 @@
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
             app:endIconMode="clear_text"
-            app:layout_constraintStart_toStartOf="@id/tv_signup"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_signup"
             app:placeholderText="Nama Pengguna"
             app:placeholderTextAppearance="@style/caption">
@@ -74,8 +75,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_email"
             style="@style/Widget.App.TextInputLayout"
-            android:layout_width="272dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="16dp"
             android:hint="@string/email"
             app:boxCornerRadiusBottomEnd="36dp"
@@ -83,7 +85,7 @@
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
             app:endIconMode="clear_text"
-            app:layout_constraintStart_toStartOf="@id/tv_signup"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textinput_username"
             app:placeholderText="Email"
             app:placeholderTextAppearance="@style/caption">
@@ -100,8 +102,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_password"
             style="@style/Widget.App.TextInputLayout"
-            android:layout_width="272dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="16dp"
             android:hint="@string/kata_sandi"
             app:boxCornerRadiusBottomEnd="36dp"
@@ -109,7 +112,7 @@
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
             app:endIconMode="password_toggle"
-            app:layout_constraintStart_toStartOf="@id/tv_signup"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textinput_email"
             app:placeholderText="Ulang Kata Sandi"
             app:placeholderTextAppearance="@style/caption">
@@ -126,8 +129,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_password_confirmation"
             style="@style/Widget.App.TextInputLayout"
-            android:layout_width="272dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="16dp"
             android:hint="@string/kata_sandi_repeat"
             app:boxCornerRadiusBottomEnd="36dp"
@@ -135,7 +139,7 @@
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
             app:endIconMode="password_toggle"
-            app:layout_constraintStart_toStartOf="@id/tv_signup"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textinput_password"
             app:placeholderText="Ulang Kata Sandi"
             app:placeholderTextAppearance="@style/caption">

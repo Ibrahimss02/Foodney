@@ -47,7 +47,7 @@
             style="@style/heading2"
             android:layout_width="272dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="16dp"
             android:text="Silakan masukkan email atau nama pengguna Anda"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +58,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_email"
             style="@style/Widget.App.TextInputLayout"
-            android:layout_width="272dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="16dp"
             android:hint="@string/email"
             app:boxCornerRadiusBottomEnd="36dp"
@@ -67,7 +68,7 @@
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
             app:endIconMode="clear_text"
-            app:layout_constraintStart_toStartOf="@id/tv_login"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_login"
             app:placeholderText="Email">
 
@@ -84,8 +85,9 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_password"
             style="@style/Widget.App.TextInputLayout"
-            android:layout_width="272dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="16dp"
             android:hint="@string/kata_sandi"
             app:boxCornerRadiusBottomEnd="36dp"
@@ -93,7 +95,7 @@
             app:boxCornerRadiusTopEnd="36dp"
             app:boxCornerRadiusTopStart="36dp"
             app:endIconMode="password_toggle"
-            app:layout_constraintStart_toStartOf="@id/textinput_email"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textinput_email"
             app:placeholderText="Kata Sandi"
             app:placeholderTextAppearance="@style/caption">
@@ -125,7 +127,7 @@
             style="@style/body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="Lupa kata sandi?"
             android:textColor="@color/black"
