@@ -1,4 +1,4 @@
-package com.raion.foodney.ui.mainScreens.home
+package com.raion.foodney.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.raion.foodney.databinding.ItemLayoutMissionBinding
 import com.raion.foodney.models.Mission
 
-class MissionAdapter: ListAdapter<Mission, MissionAdapter.MissionViewHolder>(MissionDiffUtilCallback()) {
+class WarungMissionAdapter: ListAdapter<Mission, WarungMissionAdapter.MissionViewHolder>(MissionDiffUtilCallback()) {
 
     class MissionViewHolder(private val binding: ItemLayoutMissionBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Mission) {

@@ -5,8 +5,9 @@
     tools:context=".ui.mainScreens.warungList.WarungListFragment">
 
     <data>
-
-
+        <variable
+            name="viewModel"
+            type="com.raion.foodney.ui.mainScreens.MainViewModel" />
     </data>
 
     <ScrollView
@@ -75,6 +76,7 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
+                warungMissionList="@{viewModel.missionList}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tv_mission"
