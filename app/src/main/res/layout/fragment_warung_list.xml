@@ -100,6 +100,7 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
+                warungMissionList="@{viewModel.warungList}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tv_mission"
