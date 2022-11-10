@@ -8,6 +8,9 @@
         <variable
             name="viewModel"
             type="com.raion.foodney.ui.mainScreens.MainViewModel" />
+        <variable
+            name="profile"
+            type="com.raion.foodney.models.Profile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,6 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
+                            android:text="@{profile.coins}"
                             tools:text="9876" />
                     </LinearLayout>
 
@@ -150,6 +154,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
+                            android:text="@{profile.level}"
                             tools:text="45" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>

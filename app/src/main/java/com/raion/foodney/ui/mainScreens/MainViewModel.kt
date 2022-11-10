@@ -6,4 +6,7 @@ import com.raion.foodney.models.MissionDummy
 class MainViewModel: ViewModel() {
 
     val missionList = MissionDummy.missionData
+    val warungList = MissionDummy.missionData.apply { shuffle() }
+    val completedMission = MissionDummy.completedMission
+
 }

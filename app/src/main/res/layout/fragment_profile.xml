@@ -5,7 +5,12 @@
     tools:context=".ui.mainScreens.profile.ProfileFragment">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.raion.foodney.ui.mainScreens.MainViewModel" />
+        <variable
+            name="profile"
+            type="com.raion.foodney.models.Profile" />
     </data>
 
     <ScrollView
@@ -55,6 +60,7 @@
                 android:layout_marginTop="24dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{profile.name}"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:maxLines="1"
+                    android:text="@{profile.coins}"
                     tools:text="9876" />
             </LinearLayout>
 
@@ -100,11 +107,13 @@
                 app:layout_constraintTop_toTopOf="@id/tv_user_name" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/completedMissionRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
+                warungMissionList="@{viewModel.completedMission}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_mission"

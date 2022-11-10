@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-
+        binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.recyclerView.adapter = WarungMissionAdapter()
 
