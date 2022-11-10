@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.raion.foodney.databinding.FragmentHomeBinding
+import com.raion.foodney.ui.adapter.OnClickWarungMissionListener
 import com.raion.foodney.ui.adapter.WarungMissionAdapter
 import com.raion.foodney.ui.mainScreens.MainViewModel
 
@@ -22,7 +24,9 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.recyclerView.adapter = WarungMissionAdapter()
+        binding.recyclerView.adapter = WarungMissionAdapter(OnClickWarungMissionListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailMissionFragment(id = it))
+        })
 
 
 

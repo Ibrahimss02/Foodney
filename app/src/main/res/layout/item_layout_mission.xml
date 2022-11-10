@@ -7,6 +7,9 @@
         <variable
             name="mission"
             type="com.raion.foodney.models.Mission" />
+        <variable
+            name="clickListener"
+            type="com.raion.foodney.ui.adapter.OnClickWarungMissionListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -14,6 +17,7 @@
         android:layout_height="226dp"
         android:padding="4dp"
         app:cardBackgroundColor="@color/gray"
+        android:onClick="@{() -> clickListener.onClick(mission.id)}"
         android:layout_marginEnd="16dp"
         app:cardCornerRadius="24dp">
 
@@ -65,7 +69,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/dark_grey"
-                android:text="@{mission.warung.address}"
+                android:text="@{mission.address}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_location"
                 app:layout_constraintStart_toEndOf="@id/iv_location"
                 app:layout_constraintTop_toTopOf="@id/iv_location"

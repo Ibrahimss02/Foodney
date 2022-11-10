@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.raion.foodney.databinding.ItemLayoutMissionBinding
 import com.raion.foodney.models.Mission
 
-class WarungMissionAdapter: ListAdapter<Mission, WarungMissionAdapter.MissionViewHolder>(MissionDiffUtilCallback()) {
+class WarungMissionAdapter(private val onClickWarungMissionListener: OnClickWarungMissionListener) : ListAdapter<Mission, WarungMissionAdapter.MissionViewHolder>(MissionDiffUtilCallback()) {
 
-    class MissionViewHolder(private val binding: ItemLayoutMissionBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class MissionViewHolder(private val binding: ItemLayoutMissionBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Mission) {
             binding.mission = item
+            binding.clickListener = onClickWarungMissionListener
         }
     }
 
@@ -23,6 +24,10 @@ class WarungMissionAdapter: ListAdapter<Mission, WarungMissionAdapter.MissionVie
     override fun onBindViewHolder(holder: MissionViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+}
+
+class OnClickWarungMissionListener(val clickListener: (missionId: String) -> Unit) {
+    fun onClick(missionId: String) = clickListener(missionId)
 }
 
 class MissionDiffUtilCallback: DiffUtil.ItemCallback<Mission>() {

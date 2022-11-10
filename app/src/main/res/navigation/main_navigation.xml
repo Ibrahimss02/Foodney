@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.raion.foodney.ui.mainScreens.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailMissionFragment"
+            app:destination="@id/detailMissionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/warungListFragment"
         android:name="com.raion.foodney.ui.mainScreens.warungList.WarungListFragment"
@@ -34,5 +38,14 @@
         android:id="@+id/detailMissionFragment"
         android:name="com.raion.foodney.ui.mainScreens.missionDetail.DetailMissionFragment"
         android:label="fragment_detail_mission"
-        tools:layout="@layout/fragment_detail_mission" />
+        tools:layout="@layout/fragment_detail_mission" >
+        <argument
+            android:name="isEnteringRadius"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="none" />
+    </fragment>
 </navigation>
