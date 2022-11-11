@@ -23,7 +23,7 @@ object MissionDummy {
             null,
             "Jl. Jaksa Agung Suprapto Gg. 1 No.22, Samaan, Kec. Klojen, Kota Malang",
             4.8f,
-            LatLng(-7.9662245,112.6317123),
+            LatLng(-7.966209220384015, 112.63171430887834),
             null,
             null
         ),
@@ -34,7 +34,7 @@ object MissionDummy {
             null,
             "Jl. MT. Haryono No.167, Dinoyo, Lowokwaru, Malang City, East Java 65144",
             4.9f,
-            LatLng(-7.9388781,112.6056287),
+            LatLng(-7.938878727084412, 112.60782401801859),
             null,
             null
         ),
@@ -45,7 +45,7 @@ object MissionDummy {
             null,
             "Jl. Dewandaru No.70, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141",
             4.3f,
-            LatLng(-7.9511815,112.6199206),
+            LatLng(-7.950389729124782, 112.62315515633314),
             null,
             null
         ),
@@ -56,7 +56,7 @@ object MissionDummy {
             null,
             "Jl. Cengger Ayam No.6, RW.02, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141",
             4.8f,
-            LatLng(-7.9490856,112.6305077),
+            LatLng(-7.950111332655112, 112.63159937943044),
             null,
             null
         ),
@@ -67,7 +67,7 @@ object MissionDummy {
             null,
             "Jl. Kalpataru No.25, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141",
             4.3f,
-            LatLng(-7.9505644,112.6303137),
+            LatLng(-7.950764034885629, 112.63107697268342),
             null,
             null
         ),
@@ -78,7 +78,7 @@ object MissionDummy {
             null,
             "Jl. Kalpataru No.67, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141",
             4.8f,
-            LatLng(-7.9503696,112.6287766),
+            LatLng(-7.949638468151272, 112.62848042778606),
             null,
             null
         )

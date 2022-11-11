@@ -69,4 +69,8 @@
     <string name="insufficient_permissions">Insufficient permissions.</string>
     <string name="geofence_error">There was an error in finding your restaurant</string>
     <string name="arrived_result_text">Anda berada pada wilayah %s</string>
+    <string name="foto">Foto</string>
+    <string name="ulasan">Ulasan</string>
+    <string name="star_rating">Total <b>%.1f</b></string>
+    <string name="pergi">Pergi</string>
 </resources>

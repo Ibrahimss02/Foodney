@@ -2,6 +2,7 @@ package com.raion.foodney.ui.mainScreens
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.raion.foodney.models.Mission
@@ -12,12 +13,15 @@ class MainViewModel(private val state: SavedStateHandle): ViewModel() {
     val missionList = MissionDummy.missionData
     val warungList = MissionDummy.missionData.apply { shuffle() }
     val completedMission = MissionDummy.completedMission
+    val currentMission =  MutableLiveData<Mission>()
 
     fun getCurrentMission(id: String): Mission {
-        return if (id.equals("none")) {
+        return if (id == "none") {
             missionList[0]
         } else {
-            missionList.first{ it.id == id}
+            val mission = missionList.first{ it.id == id }
+            currentMission.value = mission
+            mission
         }
     }
 

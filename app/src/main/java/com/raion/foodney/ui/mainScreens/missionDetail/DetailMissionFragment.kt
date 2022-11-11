@@ -16,14 +16,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.PermissionChecker
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.GroundOverlayOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.raion.foodney.BuildConfig
 import com.raion.foodney.R
@@ -34,7 +43,7 @@ import com.raion.foodney.utils.GeofenceBroadcastReceiver
 import com.raion.foodney.utils.buildGeofence
 import com.raion.foodney.utils.createChannel
 
-class DetailMissionFragment : Fragment() {
+class DetailMissionFragment : Fragment(), OnMapReadyCallback{
 
     private lateinit var binding: FragmentDetailMissionBinding
     private val viewModel by viewModels<MainViewModel>()
@@ -43,6 +52,7 @@ class DetailMissionFragment : Fragment() {
     private lateinit var geofence: Geofence
     private lateinit var map: GoogleMap
     private lateinit var currentMission: Mission
+    private lateinit var bottomSheet: BottomSheetBehavior<ConstraintLayout>
 
     private val deviceQLater = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q
 
@@ -54,12 +64,6 @@ class DetailMissionFragment : Fragment() {
         PendingIntent.getBroadcast(requireContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
-    override fun onStart() {
-        super.onStart()
-        checkPermissionsAndStartGeofencing()
-        Log.d(TAG, "Starting Geofencing Check")
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,6 +71,8 @@ class DetailMissionFragment : Fragment() {
         binding = FragmentDetailMissionBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        setupBottomSheet()
 
         currentMission = viewModel.getCurrentMission(requireArguments().getString("id")!!)
 
@@ -79,12 +85,64 @@ class DetailMissionFragment : Fragment() {
             // TODO: SHOW TOAST NOT ENTERED LOCATION YET
         }
 
-        geofence = buildGeofence(currentMission)
-        geofencingClient = LocationServices.getGeofencingClient(requireActivity())
+        binding.btnPergi.setOnClickListener {
+            bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+            bottomSheet.isDraggable = true
+
+            geofence = buildGeofence(currentMission)
+            geofencingClient = LocationServices.getGeofencingClient(requireActivity())
+            checkPermissionsAndStartGeofencing()
+
+            binding.btnPergi.visibility = View.GONE
+        }
+
+        setupMap()
         createChannel(requireContext())
 
 
         return binding.root
+    }
+
+    private fun setupMap() {
+        val mapFragment = childFragmentManager
+            .findFragmentById(R.id.map_view) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    private fun setupBottomSheet() {
+        bottomSheet = BottomSheetBehavior.from(binding.bottomSheetMission).apply {
+            isFitToContents = true
+            peekHeight = 400
+            isDraggable = false
+            state = BottomSheetBehavior.STATE_EXPANDED
+
+            addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    when (newState) {
+                        BottomSheetBehavior.STATE_COLLAPSED -> {
+                            binding.icLogo.visibility = View.GONE
+                            binding.backButton.visibility = View.GONE
+                            binding.tvFotoHeading.visibility = View.INVISIBLE
+                            binding.rvFoto.visibility = View.INVISIBLE
+                            binding.tvUlasanHeading.visibility = View.INVISIBLE
+                            binding.rvUlasan.visibility = View.INVISIBLE
+                        }
+                        BottomSheetBehavior.STATE_EXPANDED -> {
+                            binding.icLogo.visibility = View.VISIBLE
+                            binding.backButton.visibility = View.VISIBLE
+                            binding.tvFotoHeading.visibility = View.VISIBLE
+                            binding.rvFoto.visibility = View.VISIBLE
+                            binding.tvUlasanHeading.visibility = View.VISIBLE
+                            binding.rvUlasan.visibility = View.VISIBLE
+                        }
+                    }
+                }
+
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                    // Nothing
+                }
+            })
+        }
     }
 
     override fun onResume() {
@@ -98,14 +156,10 @@ class DetailMissionFragment : Fragment() {
     }
 
     private fun checkPermissionsAndStartGeofencing() {
-        Log.d(TAG, "Checking Permission")
         if (viewModel.geofenceIsActive()) return
-        Log.d(TAG, "Geofencing not active")
         if (foregroundAndBackgroundLocationPermissionApproved()) {
-            Log.d(TAG, "Approved")
             checkDeviceLocationSettingsAndStartGeofence()
         } else {
-            Log.d(TAG, "Requesting")
             requestForegroundAndBackgroundLocationPermissions()
         }
     }
@@ -118,7 +172,6 @@ class DetailMissionFragment : Fragment() {
     }
 
     private fun checkDeviceLocationSettingsAndStartGeofence(resolve: Boolean = true) {
-        Log.d(TAG, "Checking Location")
         val locationRequest = LocationRequest.create().apply {
             priority = Priority.PRIORITY_LOW_POWER
         }
@@ -181,7 +234,9 @@ class DetailMissionFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        removeGeofences()
+        if (this::geofencingClient.isInitialized) {
+            removeGeofences()
+        }
     }
 
     private fun removeGeofences() {
@@ -214,6 +269,13 @@ class DetailMissionFragment : Fragment() {
         } else true
 
         return foregroundPermission && backgroundPermission
+    }
+
+    private fun checkForegroundLocationPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PermissionChecker.PERMISSION_GRANTED
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -251,32 +313,42 @@ class DetailMissionFragment : Fragment() {
 
     @TargetApi(29)
     private fun requestForegroundAndBackgroundLocationPermissions() {
-        Log.d(TAG, "Asking Permission Check")
         if (foregroundAndBackgroundLocationPermissionApproved()) return
-        Log.d(TAG, "Asking Permission Check Approved")
         var permissionArray = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
 
-        val requestCode = when {
-            deviceQLater -> {
-                permissionArray += Manifest.permission.ACCESS_BACKGROUND_LOCATION
-                REQUEST_FOREGROUND_AND_BACKGROUND_PERMISSION_RESULT_CODE
-            }
-            else -> {
-                REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
-            }
-        }
-
-        Log.d(TAG, "Asking Permission Main")
         requestPermissionLauncher.launch(permissionArray)
     }
 
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+
+        val overlaySize = 15f
+        val zoomLevel = 18f
+
+        viewModel.currentMission.value?.let {
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(it.latLng, zoomLevel))
+            map.addMarker(MarkerOptions().position(it.latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_location)))
+            val groundOverlay = GroundOverlayOptions()
+                .image(BitmapDescriptorFactory.fromResource(R.drawable.iv_red_radius))
+                .position(it.latLng, overlaySize)
+            map.addGroundOverlay(groundOverlay)
+        }
+
+        enableMyLocation()
+    }
+
+    private fun enableMyLocation() {
+        if (checkForegroundLocationPermission()) {
+            map.isMyLocationEnabled = true
+        } else {
+            requestPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))
+        }
+    }
 
     companion object {
         internal const val ACTION_GEOFENCE_EVENT =
             "MapFragment.hunter.action.ACTION_GEOFENCE_EVENT"
     }
 }
-private const val REQUEST_FOREGROUND_AND_BACKGROUND_PERMISSION_RESULT_CODE = 33
-private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
 private const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
 private const val TAG = "DetailMissionFragment"
