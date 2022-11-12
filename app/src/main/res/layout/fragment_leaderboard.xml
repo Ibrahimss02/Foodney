@@ -1,14 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.mainScreens.leaderboard.LeaderboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <data>
 
-</FrameLayout>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_leaderboard"
+            style="@style/heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Papan Peringkat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Top Leaderboard -->
+
+        <!-- First Rank -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_first_rank"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/iv_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_leaderboard" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="72dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_first_rank"
+            app:layout_constraintEnd_toEndOf="@id/iv_first_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_first_rank"
+            tools:src="@drawable/iv_crown" />
+
+        <ImageView
+            android:id="@+id/iv_rank_1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="72dp"
+            android:src="@drawable/iv_rank_1"
+            app:layout_constraintEnd_toEndOf="@id/iv_first_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_first_rank"
+            app:layout_constraintTop_toTopOf="@id/iv_first_rank" />
+
+        <TextView
+            android:id="@+id/tv_first_rank_name"
+            style="@style/body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@id/iv_first_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_first_rank"
+            app:layout_constraintTop_toBottomOf="@id/iv_first_rank"
+            tools:text="Arnold" />
+
+        <TextView
+            android:id="@+id/tv_first_rank_level"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/iv_first_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_first_rank"
+            app:layout_constraintTop_toBottomOf="@id/tv_first_rank_name"
+            tools:text="Lv. 50" />
+        <!-- End of First Rank Config -->
+
+        <!-- Second Rank -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_second_rank"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/iv_avatar"
+            app:layout_constraintBottom_toBottomOf="@id/iv_first_rank"
+            app:layout_constraintEnd_toStartOf="@id/iv_first_rank"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_first_rank" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/iv_rank_2"
+            app:layout_constraintBottom_toBottomOf="@id/iv_rank_1"
+            app:layout_constraintEnd_toEndOf="@id/iv_second_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_second_rank"
+            app:layout_constraintTop_toTopOf="@id/iv_rank_1" />
+
+        <TextView
+            android:id="@+id/tv_second_rank_name"
+            style="@style/body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tv_first_rank_name"
+            app:layout_constraintEnd_toEndOf="@id/iv_second_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_second_rank"
+            app:layout_constraintTop_toTopOf="@id/tv_first_rank_name"
+            tools:text="Renatta" />
+
+        <TextView
+            android:id="@+id/tv_second_rank_level"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/iv_second_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_second_rank"
+            app:layout_constraintTop_toBottomOf="@id/tv_second_rank_name"
+            tools:text="Lv. 49" />
+        <!-- End of Second Rank Config -->
+
+        <!-- Third Rank -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_third_rank"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/iv_avatar"
+            app:layout_constraintBottom_toBottomOf="@id/iv_first_rank"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_first_rank"
+            app:layout_constraintTop_toTopOf="@id/iv_first_rank" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/iv_rank_3"
+            app:layout_constraintBottom_toBottomOf="@id/iv_rank_1"
+            app:layout_constraintEnd_toEndOf="@id/iv_third_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_third_rank"
+            app:layout_constraintTop_toTopOf="@id/iv_rank_1" />
+
+        <TextView
+            android:id="@+id/tv_third_rank_name"
+            style="@style/body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tv_first_rank_name"
+            app:layout_constraintEnd_toEndOf="@id/iv_third_rank"
+            app:layout_constraintStart_toStartOf="@id/iv_third_rank"
+            app:layout_constraintTop_toTopOf="@id/tv_first_rank_name"
+            tools:text="Quinn" />
+
+        <TextView
+            android:id="@+id/tv_third_rank_level"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/tv_third_rank_name"
+            app:layout_constraintStart_toStartOf="@id/tv_third_rank_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_third_rank_name"
+            tools:text="Lv. 48" />
+        <!-- End of Third Rank Config -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_first_rank_level"
+            tools:listitem="@layout/item_layout_leaderboard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
