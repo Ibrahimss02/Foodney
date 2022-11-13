@@ -12,7 +12,7 @@ import com.google.android.gms.location.GeofencingEvent
 import com.raion.foodney.R
 import com.raion.foodney.ui.mainScreens.missionDetail.DetailMissionFragment.Companion.ACTION_GEOFENCE_EVENT
 
-class GeofenceBroadcastReceiver(private val navController: NavController): BroadcastReceiver() {
+class GeofenceBroadcastReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == ACTION_GEOFENCE_EVENT) {
             val geofencingEvent = GeofencingEvent.fromIntent(intent)
@@ -39,7 +39,7 @@ class GeofenceBroadcastReceiver(private val navController: NavController): Broad
                 ) as NotificationManager
 
                 notificationManager.sendGeofenceEnteredNotification(
-                    navController, context, fenceId
+                    context, fenceId
                 )
             }
         }

@@ -73,4 +73,8 @@
     <string name="ulasan">Ulasan</string>
     <string name="star_rating">Total <b>%.1f</b></string>
     <string name="pergi">Pergi</string>
+    <string name="claim_dialog_text">Selamat Anda berhasil menyelesaikan misi</string>
+    <string name="kembali">Kembali</string>
+    <string name="sukses">Sukses</string>
+    <string name="claim">Klaim</string>
 </resources>

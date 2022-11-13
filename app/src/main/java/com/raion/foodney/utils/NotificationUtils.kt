@@ -15,6 +15,12 @@ import com.raion.foodney.R
 import com.raion.foodney.models.MissionDummy
 import com.raion.foodney.ui.mainScreens.missionDetail.DetailMissionFragmentArgs
 
+private var contentPendingIntent: PendingIntent? = null
+
+fun setPendingIntent(pendingIntent: PendingIntent) {
+    contentPendingIntent = pendingIntent
+}
+
 fun createChannel(context: Context) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val notificationChannel = NotificationChannel(
@@ -37,18 +43,13 @@ fun createChannel(context: Context) {
     }
 }
 
-fun NotificationManager.sendGeofenceEnteredNotification(navController: NavController, context: Context, fenceId: String) {
-    Log.d("Notification", "Fence Id: $fenceId")
+fun NotificationManager.sendGeofenceEnteredNotification(context: Context, fenceId: String) {
     val place = MissionDummy.missionData.first {
         it.id == fenceId
     }
-    val contentPendingIntent = navController.createDeepLink()
-        .addDestination(R.id.detailMissionFragment)
-        .setArguments(DetailMissionFragmentArgs(true).toBundle())
-        .createPendingIntent()
     val mapImage = BitmapFactory.decodeResource(
         context.resources,
-        R.drawable.map_small
+        R.drawable.iv_location
     )
     val bigPicStyle = NotificationCompat.BigPictureStyle()
         .bigPicture(mapImage)
@@ -61,7 +62,7 @@ fun NotificationManager.sendGeofenceEnteredNotification(navController: NavContro
         .setContentText(context.getString(R.string.content_text, place.name))
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .setContentIntent(contentPendingIntent)
-        .setSmallIcon(R.drawable.map_small)
+        .setSmallIcon(R.drawable.iv_logo)
         .setStyle(bigPicStyle)
         .setLargeIcon(mapImage)
 

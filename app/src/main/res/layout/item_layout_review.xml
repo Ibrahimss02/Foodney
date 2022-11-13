@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="review"
+            type="com.raion.foodney.models.Review" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_review"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Vladimir Putin"
+            android:text="@{review.name}"
+            app:layout_constraintStart_toEndOf="@id/iv_review"
+            app:layout_constraintTop_toTopOf="@id/iv_review"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="12dp"
+            style="@style/body1" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="@{review.rating}"
+            app:colorControlNormal="@color/yellow"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_review"
+            app:layout_constraintStart_toStartOf="@id/tv_name_review" />
+
+        <TextView
+            android:id="@+id/review_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{review.review}"
+            tools:text="Makanannya enak, porsinya banyak, dan murah"
+            app:layout_constraintTop_toBottomOf="@id/iv_review"
+            app:layout_constraintStart_toStartOf="@id/iv_review"
+            android:layout_marginTop="12dp"
+            style="@style/caption" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -14,37 +14,37 @@ object ReviewDummy{
             "review_01",
             "putin",
             "Makanannya enak, porsinya banyak, dan murah",
-            5
+            5f
         ),
         Review(
             "review_02",
             "arnold",
             "Harganya murah, rasanya sesuai harga",
-            4
+            4f
         ),
         Review(
             "review_03",
             "renatta",
             "Makanannya enak banget, pelayanannya juga cepat. Ada banyak menu yang bisa coba",
-            4.5
+            4.5f
         ),
         Review(
             "review_04",
             "quinn",
             "Ini ketiga kalinya saya datang ke tempat ini. Lokasinya strategis, banyak pilihan menu",
-            5
+            5f
         ),
         Review(
             "review_05",
             "reynold",
             "Tempatnya lumayan nyaman, makanannya juga enak enak",
-            4
+            4f
         ),
         Review(
             "review_06",
             "zelenskyy",
             "Rekomendasi banget dehh, harganya terjangkau dan enak",
-            4.5
+            4.5f
         )
     )
 }

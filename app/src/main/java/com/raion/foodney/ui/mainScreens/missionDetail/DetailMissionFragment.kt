@@ -2,10 +2,13 @@ package com.raion.foodney.ui.mainScreens.missionDetail
 
 import android.Manifest
 import android.annotation.TargetApi
+import android.app.Dialog
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -14,9 +17,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
@@ -33,17 +39,21 @@ import com.google.android.gms.maps.model.GroundOverlayOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.raion.foodney.BuildConfig
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentDetailMissionBinding
 import com.raion.foodney.models.Mission
+import com.raion.foodney.models.Review
+import com.raion.foodney.ui.adapter.WarungReviewAdapter
 import com.raion.foodney.ui.mainScreens.MainViewModel
 import com.raion.foodney.utils.GeofenceBroadcastReceiver
 import com.raion.foodney.utils.buildGeofence
 import com.raion.foodney.utils.createChannel
+import com.raion.foodney.utils.setPendingIntent
 
-class DetailMissionFragment : Fragment(), OnMapReadyCallback{
+class DetailMissionFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var binding: FragmentDetailMissionBinding
     private val viewModel by viewModels<MainViewModel>()
@@ -60,7 +70,6 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
     private val geofencePendingIntent: PendingIntent by lazy {
         val intent = Intent(requireActivity(), GeofenceBroadcastReceiver::class.java)
         intent.action = ACTION_GEOFENCE_EVENT
-        GeofenceBroadcastReceiver(navController = findNavController())
         PendingIntent.getBroadcast(requireContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
@@ -76,7 +85,8 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
 
         currentMission = viewModel.getCurrentMission(requireArguments().getString("id")!!)
 
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility = View.GONE
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility =
+            View.GONE
 
         val isFromNotification = requireArguments().getBoolean("isEnteringRadius", false)
         if (isFromNotification) {
@@ -86,21 +96,55 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
         }
 
         binding.btnPergi.setOnClickListener {
-            bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
-            bottomSheet.isDraggable = true
-
-            geofence = buildGeofence(currentMission)
-            geofencingClient = LocationServices.getGeofencingClient(requireActivity())
-            checkPermissionsAndStartGeofencing()
-
-            binding.btnPergi.visibility = View.GONE
+            if (!viewModel.geofenceIsActive()) {
+                bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+                bottomSheet.isDraggable = true
+                geofence = buildGeofence(currentMission)
+                geofencingClient = LocationServices.getGeofencingClient(requireActivity())
+                checkPermissionsAndStartGeofencing()
+                binding.svMain.scrollTo(0, binding.svMain.top);
+            }
         }
 
+        binding.btnClaim.setOnClickListener {
+            setupDialog()
+        }
+
+        binding.rvUlasan.adapter = WarungReviewAdapter()
+
         setupMap()
+        setPendingIntent(
+            findNavController().createDeepLink()
+                .addDestination(R.id.detailMissionFragment)
+                .setArguments(DetailMissionFragmentArgs(true).toBundle())
+                .createPendingIntent()
+        )
         createChannel(requireContext())
 
 
         return binding.root
+    }
+
+    private fun setupDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_claim)
+        dialog.findViewById<TextView>(R.id.tv_dialog_reward).text =
+            currentMission.coinReward.toString()
+
+        val btnClaim = dialog.findViewById<MaterialButton>(R.id.dialog_positive_button)
+        val btnCancel = dialog.findViewById<MaterialButton>(R.id.dialog_negative_button)
+
+        btnClaim.setOnClickListener {
+            // TODO CLAIM REWARD AND NAVIGATE BACK TO HOME
+            dialog.dismiss()
+            findNavController().navigateUp()
+        }
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     private fun setupMap() {
@@ -111,12 +155,11 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
 
     private fun setupBottomSheet() {
         bottomSheet = BottomSheetBehavior.from(binding.bottomSheetMission).apply {
-            isFitToContents = true
-            peekHeight = 400
             isDraggable = false
             state = BottomSheetBehavior.STATE_EXPANDED
+            peekHeight = 400
 
-            addBottomSheetCallback(object: BottomSheetBehavior.BottomSheetCallback() {
+            addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     when (newState) {
                         BottomSheetBehavior.STATE_COLLAPSED -> {
@@ -126,6 +169,11 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
                             binding.rvFoto.visibility = View.INVISIBLE
                             binding.tvUlasanHeading.visibility = View.INVISIBLE
                             binding.rvUlasan.visibility = View.INVISIBLE
+                            binding.starRating.visibility = View.INVISIBLE
+                            binding.ratingText.visibility = View.INVISIBLE
+                            binding.btnPergi.visibility = View.INVISIBLE
+
+                            binding.btnClaim.visibility = View.VISIBLE
                         }
                         BottomSheetBehavior.STATE_EXPANDED -> {
                             binding.icLogo.visibility = View.VISIBLE
@@ -134,6 +182,11 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
                             binding.rvFoto.visibility = View.VISIBLE
                             binding.tvUlasanHeading.visibility = View.VISIBLE
                             binding.rvUlasan.visibility = View.VISIBLE
+                            binding.starRating.visibility = View.VISIBLE
+                            binding.ratingText.visibility = View.VISIBLE
+                            binding.btnPergi.visibility = View.VISIBLE
+
+                            binding.btnClaim.visibility = View.INVISIBLE
                         }
                     }
                 }
@@ -147,12 +200,14 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
 
     override fun onResume() {
         super.onResume()
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility = View.GONE
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility =
+            View.GONE
     }
 
     override fun onPause() {
         super.onPause()
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility = View.VISIBLE
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility =
+            View.VISIBLE
     }
 
     private fun checkPermissionsAndStartGeofencing() {
@@ -181,7 +236,10 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
         locationSettingResponseTask.addOnFailureListener { exception ->
             if (exception is ResolvableApiException && resolve) {
                 try {
-                    exception.startResolutionForResult(requireActivity(), REQUEST_TURN_DEVICE_LOCATION_ON)
+                    exception.startResolutionForResult(
+                        requireActivity(),
+                        REQUEST_TURN_DEVICE_LOCATION_ON
+                    )
                 } catch (sendEx: IntentSender.SendIntentException) {
                     Log.d(TAG, "Error getting location settings resolution: " + sendEx.message)
                 }
@@ -216,13 +274,19 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
                 }
                 geofencingClient.addGeofences(getGeofencingRequest(), geofencePendingIntent).run {
                     addOnSuccessListener {
-                        Log.d(TAG, "Adding Success")
-                        Toast.makeText(requireContext(), getString(R.string.geofences_added, currentMission.name), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.geofences_added, currentMission.name),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         viewModel.geofenceActivated()
                     }
                     addOnFailureListener {
-                        Log.d(TAG, "Adding Failed")
-                        Toast.makeText(requireContext(), R.string.geofences_not_added, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.geofences_not_added,
+                            Toast.LENGTH_SHORT
+                        ).show()
                         if (it.message != null) {
                             Log.w(TAG, it.message!!)
                         }
@@ -327,7 +391,10 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
 
         viewModel.currentMission.value?.let {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(it.latLng, zoomLevel))
-            map.addMarker(MarkerOptions().position(it.latLng).icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_location)))
+            map.addMarker(
+                MarkerOptions().position(it.latLng)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_location))
+            )
             val groundOverlay = GroundOverlayOptions()
                 .image(BitmapDescriptorFactory.fromResource(R.drawable.iv_red_radius))
                 .position(it.latLng, overlaySize)
@@ -350,5 +417,6 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback{
             "MapFragment.hunter.action.ACTION_GEOFENCE_EVENT"
     }
 }
+
 private const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
 private const val TAG = "DetailMissionFragment"

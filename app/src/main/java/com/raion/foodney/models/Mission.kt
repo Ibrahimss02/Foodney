@@ -25,7 +25,7 @@ object MissionDummy {
             4.8f,
             LatLng(-7.966209220384015, 112.63171430887834),
             null,
-            null
+            ReviewDummy.reviewData.shuffled()
         ),
         Mission(
             "mission_02",
@@ -36,7 +36,7 @@ object MissionDummy {
             4.9f,
             LatLng(-7.938878727084412, 112.60782401801859),
             null,
-            null
+            ReviewDummy.reviewData.shuffled()
         ),
         Mission(
             "mission_03",
@@ -47,7 +47,7 @@ object MissionDummy {
             4.3f,
             LatLng(-7.950389729124782, 112.62315515633314),
             null,
-            null
+            ReviewDummy.reviewData.shuffled()
         ),
         Mission(
             "mission_04",
@@ -58,7 +58,7 @@ object MissionDummy {
             4.8f,
             LatLng(-7.950111332655112, 112.63159937943044),
             null,
-            null
+            ReviewDummy.reviewData.shuffled()
         ),
         Mission(
             "mission_05",
@@ -69,7 +69,7 @@ object MissionDummy {
             4.3f,
             LatLng(-7.950764034885629, 112.63107697268342),
             null,
-            null
+            ReviewDummy.reviewData.shuffled()
         ),
         Mission(
             "mission_06",
@@ -80,7 +80,7 @@ object MissionDummy {
             4.8f,
             LatLng(-7.949638468151272, 112.62848042778606),
             null,
-            null
+            ReviewDummy.reviewData.shuffled()
         )
     )
 

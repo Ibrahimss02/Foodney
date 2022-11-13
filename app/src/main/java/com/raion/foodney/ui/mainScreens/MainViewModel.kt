@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.raion.foodney.models.Mission
 import com.raion.foodney.models.MissionDummy
+import com.raion.foodney.models.Review
 
 class MainViewModel(private val state: SavedStateHandle): ViewModel() {
 
