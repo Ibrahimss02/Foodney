@@ -81,7 +81,7 @@
         <!-- End of Email Configuration-->
 
 
-        <!-- Password Confirmation Configuration-->
+        <!-- Password Configuration-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_password"
             style="@style/Widget.App.TextInputLayout"
@@ -101,12 +101,12 @@
             app:placeholderTextAppearance="@style/caption">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_password_confirmation"
+                android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColorHint="@color/light_gray" />
         </com.google.android.material.textfield.TextInputLayout>
-        <!-- End of Passsword Confirmation Configuration-->
+        <!-- End of Passsword Configuration-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
