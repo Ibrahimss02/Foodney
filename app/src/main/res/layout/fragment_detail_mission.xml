@@ -211,6 +211,23 @@
                         android:visibility="invisible"
                         tools:visibility="visible"/>
 
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btn_mock_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@id/btn_claim"
+                        app:layout_constraintTop_toTopOf="@id/btn_claim"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_claim"
+                        android:importantForAccessibility="no"
+                        app:backgroundTint="#FF0D00"
+                        android:src="@drawable/ic_location"
+                        app:fabSize="mini"
+                        app:fabCustomSize="36dp"
+                        tools:visibility="visible"
+                        android:visibility="invisible"
+                        android:layout_marginStart="12dp"/>
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.core.widget.NestedScrollView>

@@ -2,30 +2,34 @@ package com.raion.foodney.ui.mainScreens.missionDetail
 
 import android.Manifest
 import android.annotation.TargetApi
+import android.app.AlertDialog
+import android.app.AppOpsManager
 import android.app.Dialog
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Process
 import android.provider.Settings
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.ResolvableApiException
@@ -46,13 +50,14 @@ import com.raion.foodney.BuildConfig
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentDetailMissionBinding
 import com.raion.foodney.models.Mission
-import com.raion.foodney.models.Review
 import com.raion.foodney.ui.adapter.WarungReviewAdapter
 import com.raion.foodney.ui.mainScreens.MainViewModel
 import com.raion.foodney.utils.GeofenceBroadcastReceiver
 import com.raion.foodney.utils.buildGeofence
 import com.raion.foodney.utils.createChannel
 import com.raion.foodney.utils.setPendingIntent
+import java.util.*
+
 
 class DetailMissionFragment : Fragment(), OnMapReadyCallback {
 
@@ -92,6 +97,7 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
 
         binding.btnPergi.setOnClickListener {
             if (!viewModel.geofenceIsActive()) {
+                showInfoMockLocationDialog()
                 bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
                 bottomSheet.isDraggable = true
                 geofence = buildGeofence(currentMission)
@@ -116,8 +122,24 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         )
         createChannel(requireContext())
 
+        binding.btnMockLocation.setOnClickListener {
+            setupDialog()
+        }
 
         return binding.root
+    }
+
+    private fun showInfoMockLocationDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Info Prototype")
+        builder.setMessage("Aplikasi akan mendeteksi lokasi dan memunculkan notifikasi ketika memasuki radius lokasi. Anda dapat menggunakan Aplikasi Fake GPS atau untuk keperluan testing dapat menekan tombol merah untuk langsung mengklaim poin.")
+            .setPositiveButton(
+                "Ok"
+            ) { _, _ ->
+                binding.btnMockLocation.visibility = View.VISIBLE
+            }
+        // Create the AlertDialog object and return it
+        builder.create().show()
     }
 
     private fun setupDialog() {
@@ -130,7 +152,6 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         val btnCancel = dialog.findViewById<MaterialButton>(R.id.dialog_negative_button)
 
         btnClaim.setOnClickListener {
-            // TODO CLAIM REWARD AND NAVIGATE BACK TO HOME
             viewModel.claimReward(currentMission)
             Toast.makeText(requireContext(), "Sukses mengklaim hadiah", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
@@ -187,6 +208,7 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         binding.btnPergi.visibility = View.INVISIBLE
 
         binding.btnClaim.visibility = View.VISIBLE
+        binding.btnMockLocation.visibility = View.VISIBLE
     }
 
     private fun onExpandedBottomSheet() {
@@ -201,6 +223,7 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         binding.btnPergi.visibility = View.VISIBLE
 
         binding.btnClaim.visibility = View.INVISIBLE
+        binding.btnMockLocation.visibility = View.INVISIBLE
 
     }
 
