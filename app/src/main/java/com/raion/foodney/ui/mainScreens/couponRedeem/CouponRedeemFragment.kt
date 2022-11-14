@@ -1,14 +1,18 @@
 package com.raion.foodney.ui.mainScreens.couponRedeem
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayoutMediator
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentCouponRedeemBinding
+import com.raion.foodney.ui.mainScreens.coupons.Constants.TAB_TITLES
+import com.raion.foodney.ui.mainScreens.coupons.CouponAdapter
 import com.raion.foodney.ui.mainScreens.MainViewModel
 
 class CouponRedeemFragment : Fragment() {
@@ -23,6 +27,11 @@ class CouponRedeemFragment : Fragment() {
         binding = FragmentCouponRedeemBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
+
+        binding.viewPager.adapter = CouponAdapter(activity as AppCompatActivity)
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tabs, position ->
+            tabs.text = resources.getString(TAB_TITLES[position])
+        }.attach()
 
 
         binding.btnAdd.setOnClickListener {

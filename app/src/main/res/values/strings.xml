@@ -34,7 +34,8 @@
     <string name="kata_sandi">Kata Sandi</string>
     <string name="nama_pengguna">Nama Pengguna</string>
     <string name="kata_sandi_repeat">Ulang Kata Sandi</string>
-
+    <string name="beli_kupon">Beli Kupon</string>
+    <string name="kupon_saya">Kupon Saya</string>
     <!-- Error strings -->
     <string name="geofence_not_available">Geofence service is not available now</string>
     <string name="geofence_too_many_geofences">Your app has registered too many geofences</string>
