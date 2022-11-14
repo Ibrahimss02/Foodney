@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.mainScreens.coupons.CouponDetailFragment">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/heading3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Kupon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/iv_arrow_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="379dp"
+            android:layout_height="524dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/iv_coupon_bg" />
+        </FrameLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_coupon_img"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/iv_mie_bakar_celaket"
+            app:layout_constraintStart_toStartOf="@id/frame"
+            app:layout_constraintTop_toTopOf="@id/frame" />
+
+        <TextView
+            android:id="@+id/tv_coupon_name"
+            style="@style/body2"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Mie Bakar Celaket"
+            app:layout_constraintStart_toEndOf="@id/iv_coupon_img"
+            app:layout_constraintTop_toTopOf="@id/iv_coupon_img" />
+
+        <TextView
+            android:id="@+id/tv_coupon_reward"
+            style="@style/heading2"
+            android:layout_width="160dp"
+            android:layout_height="64dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Beli 1 Gratis 1"
+            app:layout_constraintStart_toStartOf="@id/tv_coupon_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_coupon_name" />
+
+        <TextView
+            android:id="@+id/tv_coupon_desc"
+            style="@style/body1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Beli makanan apa saja dan dapatkan makanan gratis"
+            app:layout_constraintStart_toStartOf="@id/iv_coupon_img"
+            app:layout_constraintTop_toBottomOf="@id/iv_coupon_img" />
+
+        <TextView
+            android:id="@+id/tv_coupon_terms"
+            style="@style/caption"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="- Kupon hanya berlaku di warung Mie Bakar Celaket\n- Tidak berlaku dengan diskon dan promosi lainnya"
+            app:layout_constraintStart_toStartOf="@id/iv_coupon_img"
+            app:layout_constraintTop_toBottomOf="@id/tv_coupon_desc" />
+
+        <ImageView
+            android:id="@+id/line"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/iv_horizontal_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_coupon_terms" />
+
+        <ImageView
+            android:id="@+id/qr"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/iv_qr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line" />
+
+        <TextView
+            android:id="@+id/tv_coupon_expired"
+            style="@style/caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Berlaku hingga 2 November 2022"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintEnd_toEndOf="@id/qr"
+            app:layout_constraintStart_toStartOf="@id/qr"
+            app:layout_constraintTop_toBottomOf="@id/qr" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
