@@ -54,7 +54,7 @@
             android:layout_height="84dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="40dp"
-            android:src="@drawable/iv_umkm"
+            android:src="@drawable/iv_mie_bakar_celaket"
             app:layout_constraintStart_toStartOf="@id/frame"
             app:layout_constraintTop_toTopOf="@id/frame" />
 
