@@ -32,11 +32,7 @@
         android:id="@+id/couponRedeemFragment"
         android:name="com.raion.foodney.ui.mainScreens.couponRedeem.CouponRedeemFragment"
         android:label="fragment_coupon_redeem"
-        tools:layout="@layout/fragment_coupon_redeem" >
-        <action
-            android:id="@+id/action_couponRedeemFragment_to_warungListFragment"
-            app:destination="@id/warungListFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_coupon_redeem" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.raion.foodney.ui.mainScreens.profile.ProfileFragment"

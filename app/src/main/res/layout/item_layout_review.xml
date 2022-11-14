@@ -18,7 +18,7 @@
             android:id="@+id/iv_review"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@{review.avatar}"
+            imageSrc="@{review.avatar}"
             android:scaleType="centerCrop"
             tools:src="@drawable/putin"
             app:layout_constraintTop_toTopOf="parent"

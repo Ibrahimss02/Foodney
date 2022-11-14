@@ -18,7 +18,7 @@
             android:id="@+id/rv_buy_coupon"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            myCouponList="@{viewmodel.couponList}"
+            couponList="@{viewmodel.couponList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_layout_coupon"
             app:layout_constraintStart_toStartOf="parent"

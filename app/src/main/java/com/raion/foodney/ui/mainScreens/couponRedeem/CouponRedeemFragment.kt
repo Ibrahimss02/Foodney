@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentCouponRedeemBinding
 import com.raion.foodney.ui.mainScreens.coupons.Constants.TAB_TITLES
@@ -28,14 +29,14 @@ class CouponRedeemFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
 
-        binding.viewPager.adapter = CouponAdapter(activity as AppCompatActivity)
+        binding.viewPager.adapter = CouponAdapter(requireActivity() as AppCompatActivity)
         TabLayoutMediator(binding.tabs, binding.viewPager) { tabs, position ->
             tabs.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
-
         binding.btnAdd.setOnClickListener {
-            findNavController().navigate(CouponRedeemFragmentDirections.actionCouponRedeemFragmentToWarungListFragment())
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).selectedItemId =
+                R.id.warungListFragment
         }
 
         return binding.root
