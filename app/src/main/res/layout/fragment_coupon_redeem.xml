@@ -84,12 +84,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/point"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/black" />
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@style/heading3"
+            app:tabTextColor="@color/dark_grey" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
