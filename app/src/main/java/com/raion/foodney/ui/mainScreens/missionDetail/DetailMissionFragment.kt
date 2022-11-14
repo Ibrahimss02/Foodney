@@ -29,6 +29,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
+import androidx.databinding.adapters.ImageViewBindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -50,6 +51,7 @@ import com.raion.foodney.BuildConfig
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentDetailMissionBinding
 import com.raion.foodney.models.Mission
+import com.raion.foodney.ui.adapter.WarungImageAdapter
 import com.raion.foodney.ui.adapter.WarungReviewAdapter
 import com.raion.foodney.ui.mainScreens.MainViewModel
 import com.raion.foodney.utils.GeofenceBroadcastReceiver
@@ -106,6 +108,8 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
                 binding.svMain.scrollTo(0, binding.svMain.top);
             }
         }
+
+        binding.rvFoto.adapter = WarungImageAdapter(currentMission.photoUrls!!)
 
         binding.btnClaim.setOnClickListener {
             setupDialog()

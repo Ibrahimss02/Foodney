@@ -17,7 +17,7 @@ data class Mission(
     val rating: Float = 0f,
     val latLng: LatLng,
     val photo: Int,
-    val photoUrls: List<String>?,
+    val photoUrls: List<Int>?,
     val reviews: List<Review>?
 ) {
     constructor() : this("", "", 0, 0, "", 0f, LatLng(0.0, 0.0), 0, listOf(), listOf())
@@ -34,7 +34,7 @@ object MissionDummy {
             4.8f,
             LatLng(-7.966209220384015, 112.63171430887834),
             R.drawable.iv_mie_bakar_celaket,
-            null,
+            arrayListOf(R.drawable.iv_mie_bakar_celaket, R.drawable.iv_mie_bakar_celaket, R.drawable.iv_mie_bakar_celaket, R.drawable.iv_mie_bakar_celaket),
             ReviewDummy.reviewData.shuffled()
         ),
         Mission(
@@ -46,7 +46,7 @@ object MissionDummy {
             4.9f,
             LatLng(-7.938878727084412, 112.60782401801859),
             R.drawable.iv_pecel_sambal_tumpang_bu_djarot,
-            null,
+            arrayListOf(R.drawable.iv_pecel_sambal_tumpang_bu_djarot, R.drawable.iv_pecel_sambal_tumpang_bu_djarot, R.drawable.iv_pecel_sambal_tumpang_bu_djarot, R.drawable.iv_pecel_sambal_tumpang_bu_djarot),
             ReviewDummy.reviewData.shuffled()
         ),
         Mission(
@@ -58,7 +58,7 @@ object MissionDummy {
             4.3f,
             LatLng(-7.950389729124782, 112.62315515633314),
             R.drawable.iv_es_setrup_slamet,
-            null,
+            arrayListOf(R.drawable.iv_es_setrup_slamet, R.drawable.iv_es_setrup_slamet, R.drawable.iv_es_setrup_slamet, R.drawable.iv_es_setrup_slamet),
             ReviewDummy.reviewData.shuffled()
         ),
         Mission(
@@ -70,7 +70,7 @@ object MissionDummy {
             4.8f,
             LatLng(-7.950111332655112, 112.63159937943044),
             R.drawable.iv_lalapan_cak_midi,
-            null,
+            arrayListOf(R.drawable.iv_lalapan_cak_midi, R.drawable.iv_lalapan_cak_midi, R.drawable.iv_lalapan_cak_midi, R.drawable.iv_lalapan_cak_midi),
             ReviewDummy.reviewData.shuffled()
         ),
         Mission(
@@ -82,7 +82,7 @@ object MissionDummy {
             4.3f,
             LatLng(-7.950764034885629, 112.63107697268342),
             R.drawable.iv_lalapan_belut_fresh,
-            null,
+            arrayListOf(R.drawable.iv_lalapan_belut_fresh, R.drawable.iv_lalapan_belut_fresh, R.drawable.iv_lalapan_belut_fresh, R.drawable.iv_lalapan_belut_fresh),
             ReviewDummy.reviewData.shuffled()
         ),
         Mission(
@@ -94,7 +94,7 @@ object MissionDummy {
             4.8f,
             LatLng(-7.949638468151272, 112.62848042778606),
             R.drawable.iv_tahu_campur_dan_telor_cak_roon,
-            null,
+            arrayListOf(R.drawable.iv_tahu_campur_dan_telor_cak_roon, R.drawable.iv_tahu_campur_dan_telor_cak_roon, R.drawable.iv_tahu_campur_dan_telor_cak_roon, R.drawable.iv_tahu_campur_dan_telor_cak_roon),
             ReviewDummy.reviewData.shuffled()
         )
     )
