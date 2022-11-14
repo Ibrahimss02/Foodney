@@ -67,7 +67,9 @@
                 android:id="@+id/edt_username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColorHint="@color/light_gray" />
+                android:textColorHint="@color/light_gray"
+                android:inputType="textPersonName"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
         <!-- End of Username Configuration-->
 
@@ -94,7 +96,9 @@
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColorHint="@color/light_gray" />
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/light_gray"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
         <!-- End of Email Configuration-->
 
@@ -121,7 +125,9 @@
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColorHint="@color/light_gray" />
+                android:inputType="textPassword"
+                android:textColorHint="@color/light_gray"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
         <!-- End of Passsword Configuration-->
 
@@ -148,7 +154,9 @@
                 android:id="@+id/edt_password_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColorHint="@color/light_gray" />
+                android:inputType="textPassword"
+                android:textColorHint="@color/light_gray"
+                android:maxLines="1"/>
         </com.google.android.material.textfield.TextInputLayout>
         <!-- End of Passsword Confirmation Configuration-->
 
@@ -194,14 +202,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textinput_password_confirmation" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_next"
             android:layout_width="272dp"
-            android:layout_height="48dp"
+            android:layout_height="56dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_background"
-            android:backgroundTint="@color/dark_grey"
-            android:text="@string/next"
+            app:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            app:cornerRadius="32dp"
+            android:text="@string/daftar"
             android:textAllCaps="false"
             android:textAppearance="@style/button"
             app:layout_constraintEnd_toEndOf="parent"

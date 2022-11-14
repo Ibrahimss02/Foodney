@@ -8,9 +8,6 @@
         <variable
             name="viewModel"
             type="com.raion.foodney.ui.mainScreens.MainViewModel" />
-        <variable
-            name="profile"
-            type="com.raion.foodney.models.Profile" />
     </data>
 
     <ScrollView
@@ -33,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/btn_sign_out"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="16dp"
@@ -60,7 +58,7 @@
                 android:layout_marginTop="24dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{profile.name}"
+                android:text="@{viewModel.userProfile.name}"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:maxLines="1"
-                    android:text="@{profile.coins}"
+                    android:text="@{String.valueOf(viewModel.userProfile.coins)}"
                     tools:text="9876" />
             </LinearLayout>
 
@@ -113,7 +111,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
-                warungMissionList="@{viewModel.completedMission}"
+                warungMissionList="@{viewModel.userProfile.completedMission}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_mission"

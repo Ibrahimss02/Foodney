@@ -37,9 +37,9 @@ internal object GeofencingConstants {
 
 fun buildGeofence(mission: Mission): Geofence {
     return Geofence.Builder()
-        .setRequestId(mission.id)
+        .setRequestId(mission.id!!)
         .setCircularRegion(
-            mission.latLng.latitude,
+            mission.latLng!!.latitude,
             mission.latLng.longitude,
             GeofencingConstants.GEOFENCE_RADIUS_IN_METERS
         )

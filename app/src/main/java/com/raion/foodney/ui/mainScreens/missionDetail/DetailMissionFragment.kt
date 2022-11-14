@@ -36,6 +36,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.GroundOverlayOptions
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -136,6 +137,8 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
 
         btnClaim.setOnClickListener {
             // TODO CLAIM REWARD AND NAVIGATE BACK TO HOME
+            viewModel.claimReward(currentMission)
+            Toast.makeText(requireContext(), "Sukses mengklaim hadiah", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
             findNavController().navigateUp()
         }
@@ -390,14 +393,14 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         val zoomLevel = 18f
 
         viewModel.currentMission.value?.let {
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(it.latLng, zoomLevel))
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(it.latLng.latitude, it.latLng.longitude), zoomLevel))
             map.addMarker(
-                MarkerOptions().position(it.latLng)
+                MarkerOptions().position(LatLng(it.latLng.latitude, it.latLng.longitude))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.iv_location))
             )
             val groundOverlay = GroundOverlayOptions()
                 .image(BitmapDescriptorFactory.fromResource(R.drawable.iv_red_radius))
-                .position(it.latLng, overlaySize)
+                .position(LatLng(it.latLng.latitude, it.latLng.longitude), overlaySize)
             map.addGroundOverlay(groundOverlay)
         }
 

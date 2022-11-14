@@ -1,6 +1,8 @@
 package com.raion.foodney.ui.welcomeScreens.signUp
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.raion.foodney.MainActivity
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentSignUpBinding
 
@@ -24,6 +27,20 @@ class SignUpFragment : Fragment() {
 
         binding.tvMasuk.setOnClickListener {
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
+        }
+
+        viewModel.signUpState.observe(viewLifecycleOwner) {
+            when (it) {
+                SignUpState.SUCCESS -> {
+                    Log.d("SignUpFragment", "Success Sign Up")
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    requireActivity().finish()
+                }
+                SignUpState.FAILED -> {
+                    binding.edtEmail.error = viewModel.signUpMessages
+                    binding.edtEmail.requestFocus()
+                }
+            }
         }
 
         binding.btnNext.setOnClickListener {

@@ -1,14 +1,16 @@
 package com.raion.foodney.models
 
+import com.raion.foodney.R
+
 data class UserLeaderboard(
     val name: String,
     val level: Int,
     val avatar: Int
 )
 object LeaderboardDummy {
-    val leaderboardData = listOf<LeaderboardDummy>(
+    val leaderboardData = listOf<UserLeaderboard>(
         /* TODO : INSERT DUMMY HERE */
-        UserLeaderboard (
+        UserLeaderboard(
             "arnold",
             50,
             R.drawable.arnold

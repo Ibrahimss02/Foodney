@@ -6,6 +6,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -23,13 +24,20 @@ class SignInFragment : Fragment() {
     ): View {
         binding = FragmentSignInBinding.inflate(layoutInflater)
 
-        binding.tvForgetPassword.setOnClickListener {
-            startActivity(Intent(activity, MainActivity::class.java))
-            requireActivity().finish()
-        }
-
         binding.tvDaftar.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
+        }
+
+        viewModel.signInState.observe(viewLifecycleOwner) {
+            when (it) {
+                LoginState.SUCCESS -> {
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    requireActivity().finish()
+                }
+                LoginState.FAILED -> {
+                    Toast.makeText(requireContext(), viewModel.signInMessages, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.btnLogin.setOnClickListener {

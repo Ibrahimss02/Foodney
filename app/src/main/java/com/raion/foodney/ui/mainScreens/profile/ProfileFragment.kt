@@ -1,5 +1,6 @@
 package com.raion.foodney.ui.mainScreens.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.raion.foodney.R
+import com.raion.foodney.WelcomeActivity
 import com.raion.foodney.databinding.FragmentProfileBinding
 import com.raion.foodney.ui.adapter.OnClickWarungMissionListener
 import com.raion.foodney.ui.adapter.WarungMissionAdapter
@@ -30,6 +32,11 @@ class ProfileFragment : Fragment() {
             Toast.makeText(requireContext(), "Completed Mission $it", Toast.LENGTH_SHORT).show()
         })
 
+        binding.btnSignOut.setOnClickListener {
+            viewModel.signOut()
+            startActivity(Intent(requireContext(), WelcomeActivity::class.java))
+            requireActivity().finish()
+        }
 
 
         return binding.root

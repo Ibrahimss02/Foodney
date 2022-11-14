@@ -8,9 +8,11 @@ import com.raion.foodney.ui.adapter.WarungMissionAdapter
 import com.raion.foodney.ui.adapter.WarungReviewAdapter
 
 @BindingAdapter("warungMissionList")
-fun RecyclerView.bindMissionList(list: List<Mission>) {
-    val adapter = this.adapter as WarungMissionAdapter
-    adapter.submitList(list)
+fun RecyclerView.bindMissionList(list: List<Mission>?) {
+    list?.let {
+        val adapter = this.adapter as WarungMissionAdapter
+        adapter.submitList(it)
+    }
 }
 
 @BindingAdapter("warungReviewList")

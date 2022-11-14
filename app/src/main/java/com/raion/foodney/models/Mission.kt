@@ -1,18 +1,24 @@
 package com.raion.foodney.models
 
-import com.google.android.gms.maps.model.LatLng
+
+data class LatLng(
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
+)
 
 data class Mission(
     val id: String,
     val name: String,
     val coinReward: Int,
-    var distance: Int? = null,
+    var distance: Int?,
     val address: String,
-    val rating: Float,
+    val rating: Float = 0f,
     val latLng: LatLng,
     val photoUrls: List<String>?,
     val reviews: List<Review>?
-)
+) {
+    constructor() : this("", "", 0, 0, "", 0f, LatLng(0.0, 0.0), listOf(), listOf())
+}
 
 object MissionDummy {
     val missionData = arrayListOf(

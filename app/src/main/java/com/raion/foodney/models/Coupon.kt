@@ -5,8 +5,10 @@ data class Coupon(
     val name: String,
     val couponDesc: String,
     val cost: Int,
-    val image: String?
-)
+    val image: Int?
+) {
+    constructor() : this("", "", "", 0, null)
+}
 
 object CouponDummy {
     val couponData = arrayListOf(
