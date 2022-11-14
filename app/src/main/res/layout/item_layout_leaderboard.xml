@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="userLeaderboard"
+            type="com.raion.foodney.models.UserLeaderboard" />
+        <variable
+            name="index"
+            type="Integer" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -30,6 +35,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:text="@{String.format(`%d.`, index)}"
                 tools:text="4." />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -37,6 +43,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
+                imageSrc="@{userLeaderboard.avatar}"
                 app:layout_constraintStart_toEndOf="@id/tv_rank"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -50,6 +57,7 @@
                 android:layout_marginStart="24dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{userLeaderboard.name}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_avatar"
                 app:layout_constraintTop_toTopOf="parent"
@@ -79,7 +87,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="47" />
+                tools:text="47"
+                android:text="@{String.valueOf(userLeaderboard.level)}"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

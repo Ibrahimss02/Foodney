@@ -5,7 +5,9 @@
     tools:context=".ui.mainScreens.couponRedeem.CouponRedeemFragment">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="com.raion.foodney.ui.mainScreens.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{@string/three_digit_delim(viewmodel.userProfile.coins)}"
                 tools:text="9.876" />
         </LinearLayout>
 

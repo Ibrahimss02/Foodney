@@ -5,15 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.raion.foodney.R
+import com.raion.foodney.databinding.FragmentMyCouponBinding
+import com.raion.foodney.ui.adapter.MyCouponAdapter
+import com.raion.foodney.ui.mainScreens.MainViewModel
 
 class MyCouponFragment : Fragment() {
+
+    private lateinit var binding: FragmentMyCouponBinding
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_coupon, container, false)
+    ): View {
+        binding = FragmentMyCouponBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.viewmodel = viewModel
+        binding.rvMyCoupon.adapter = MyCouponAdapter()
+
+        return binding.root
     }
 }

@@ -9,10 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.auth.User
-import com.raion.foodney.models.Mission
-import com.raion.foodney.models.MissionDummy
-import com.raion.foodney.models.Profile
-import com.raion.foodney.models.Review
+import com.raion.foodney.models.*
 
 class MainViewModel(private val state: SavedStateHandle) : ViewModel() {
 
@@ -23,7 +20,7 @@ class MainViewModel(private val state: SavedStateHandle) : ViewModel() {
 
     val missionList = MissionDummy.missionData
     val warungList = MissionDummy.missionData.apply { shuffle() }
-    val completedMission = MissionDummy.completedMission
+    val couponList = CouponDummy.couponData
     val currentMission = MutableLiveData<Mission>()
     private val firebaseDatabase =
         FirebaseDatabase.getInstance("https://foodney-49058-default-rtdb.firebaseio.com/")
@@ -84,6 +81,30 @@ class MainViewModel(private val state: SavedStateHandle) : ViewModel() {
         _userProfile.value = null
         auth.signOut()
     }
+
+    fun buyCoupon(coupon: Coupon) {
+        val profile = _userProfile.value?.copy()
+        profile?.let {
+            it.coins -= coupon.cost
+            if (it.ownedCoupon == null) {
+                it.ownedCoupon = mutableListOf<Coupon>().apply { add(coupon) }
+            } else {
+                it.ownedCoupon!!.toMutableList().add(coupon)
+            }
+            updateUserData(auth.currentUser!!.uid, it)
+            _userProfile.value = it
+        }
+        _userProfile.value = profile
+        updateUserData(_userProfile.value!!.uid, _userProfile.value!!)
+    }
+
+    /*
+    Data For Leaderboard
+     */
+    val userLeaderboardData = LeaderboardDummy.leaderboardData
+    val user1 = LeaderboardDummy.leaderboardData[0]
+    val user2 = LeaderboardDummy.leaderboardData[1]
+    val user3 = LeaderboardDummy.leaderboardData[2]
 }
 
 private const val GEOFENCE_STATUS_KEY = "geofenceActive"

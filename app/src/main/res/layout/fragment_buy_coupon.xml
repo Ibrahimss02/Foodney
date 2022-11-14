@@ -5,7 +5,9 @@
     tools:context=".ui.mainScreens.coupons.BuyCouponFragment">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="com.raion.foodney.ui.mainScreens.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +18,9 @@
             android:id="@+id/rv_buy_coupon"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            tools:listitem="@layout/item_layout_my_coupon"
+            myCouponList="@{viewmodel.couponList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_layout_coupon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

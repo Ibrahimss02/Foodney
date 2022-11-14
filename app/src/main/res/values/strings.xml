@@ -79,4 +79,7 @@
     <string name="claim">Klaim</string>
     <string name="daftar">Daftar</string>
     <string name="next_mission">Misi selanjutnya</string>
+    <string name="coupon_price">- %d</string>
+    <string name="three_digit_delim">%,d</string>
+    <string name="leaderboard_user_level">Lv. %d</string>
 </resources>

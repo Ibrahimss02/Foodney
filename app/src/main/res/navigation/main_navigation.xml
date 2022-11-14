@@ -18,7 +18,11 @@
         android:id="@+id/warungListFragment"
         android:name="com.raion.foodney.ui.mainScreens.warungList.WarungListFragment"
         android:label="fragment_warung_list"
-        tools:layout="@layout/fragment_warung_list" />
+        tools:layout="@layout/fragment_warung_list" >
+        <action
+            android:id="@+id/action_warungListFragment_to_detailMissionFragment"
+            app:destination="@id/detailMissionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/leaderboardFragment"
         android:name="com.raion.foodney.ui.mainScreens.leaderboard.LeaderboardFragment"
@@ -28,7 +32,11 @@
         android:id="@+id/couponRedeemFragment"
         android:name="com.raion.foodney.ui.mainScreens.couponRedeem.CouponRedeemFragment"
         android:label="fragment_coupon_redeem"
-        tools:layout="@layout/fragment_coupon_redeem" />
+        tools:layout="@layout/fragment_coupon_redeem" >
+        <action
+            android:id="@+id/action_couponRedeemFragment_to_warungListFragment"
+            app:destination="@id/warungListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.raion.foodney.ui.mainScreens.profile.ProfileFragment"

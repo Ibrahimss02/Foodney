@@ -7,17 +7,16 @@
         <variable
             name="coupon"
             type="com.raion.foodney.models.Coupon" />
+        <variable
+            name="onClickListener"
+            type="com.raion.foodney.ui.adapter.CouponOnClickListener" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/bg_coupon" />
+        android:layout_marginTop="8dp"
+        android:onClick="@{() -> onClickListener.onClick(coupon)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,6 +68,26 @@
                 android:text="@{coupon.couponDesc}"
                 app:layout_constraintStart_toStartOf="@id/tv_coupon_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_coupon_name" />
+
+            <ImageView
+                android:id="@+id/iv_coupon_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_dollar_circle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/iv_coupon_img"
+                android:layout_marginEnd="42dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/iv_coupon_price"
+                app:layout_constraintEnd_toEndOf="@id/iv_coupon_price"
+                android:text="@{@string/coupon_price(coupon.cost)}"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                style="@style/heading3"
+                tools:text="- 100"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
