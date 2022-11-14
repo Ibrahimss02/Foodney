@@ -89,12 +89,6 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility =
             View.GONE
 
-        val isFromNotification = requireArguments().getBoolean("isEnteringRadius", false)
-        if (isFromNotification) {
-            // TODO: SHOW BOTTOM SHEET WITH CLAIM BUTTON
-        } else {
-            // TODO: SHOW TOAST NOT ENTERED LOCATION YET
-        }
 
         binding.btnPergi.setOnClickListener {
             if (!viewModel.geofenceIsActive()) {
@@ -117,7 +111,7 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         setPendingIntent(
             findNavController().createDeepLink()
                 .addDestination(R.id.detailMissionFragment)
-                .setArguments(DetailMissionFragmentArgs(true).toBundle())
+                .setArguments(DetailMissionFragmentArgs(true, currentMission.id).toBundle())
                 .createPendingIntent()
         )
         createChannel(requireContext())
@@ -131,7 +125,7 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         dialog.setContentView(R.layout.dialog_claim)
         dialog.findViewById<TextView>(R.id.tv_dialog_reward).text =
             currentMission.coinReward.toString()
-
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         val btnClaim = dialog.findViewById<MaterialButton>(R.id.dialog_positive_button)
         val btnCancel = dialog.findViewById<MaterialButton>(R.id.dialog_negative_button)
 
@@ -166,30 +160,10 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     when (newState) {
                         BottomSheetBehavior.STATE_COLLAPSED -> {
-                            binding.icLogo.visibility = View.GONE
-                            binding.backButton.visibility = View.GONE
-                            binding.tvFotoHeading.visibility = View.INVISIBLE
-                            binding.rvFoto.visibility = View.INVISIBLE
-                            binding.tvUlasanHeading.visibility = View.INVISIBLE
-                            binding.rvUlasan.visibility = View.INVISIBLE
-                            binding.starRating.visibility = View.INVISIBLE
-                            binding.ratingText.visibility = View.INVISIBLE
-                            binding.btnPergi.visibility = View.INVISIBLE
-
-                            binding.btnClaim.visibility = View.VISIBLE
+                            onCollapsedBottomSheet()
                         }
                         BottomSheetBehavior.STATE_EXPANDED -> {
-                            binding.icLogo.visibility = View.VISIBLE
-                            binding.backButton.visibility = View.VISIBLE
-                            binding.tvFotoHeading.visibility = View.VISIBLE
-                            binding.rvFoto.visibility = View.VISIBLE
-                            binding.tvUlasanHeading.visibility = View.VISIBLE
-                            binding.rvUlasan.visibility = View.VISIBLE
-                            binding.starRating.visibility = View.VISIBLE
-                            binding.ratingText.visibility = View.VISIBLE
-                            binding.btnPergi.visibility = View.VISIBLE
-
-                            binding.btnClaim.visibility = View.INVISIBLE
+                            onExpandedBottomSheet()
                         }
                     }
                 }
@@ -201,10 +175,63 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun onCollapsedBottomSheet() {
+        binding.icLogo.visibility = View.GONE
+        binding.backButton.visibility = View.GONE
+        binding.tvFotoHeading.visibility = View.INVISIBLE
+        binding.rvFoto.visibility = View.INVISIBLE
+        binding.tvUlasanHeading.visibility = View.INVISIBLE
+        binding.rvUlasan.visibility = View.INVISIBLE
+        binding.starRating.visibility = View.INVISIBLE
+        binding.ratingText.visibility = View.INVISIBLE
+        binding.btnPergi.visibility = View.INVISIBLE
+
+        binding.btnClaim.visibility = View.VISIBLE
+    }
+
+    private fun onExpandedBottomSheet() {
+        binding.icLogo.visibility = View.VISIBLE
+        binding.backButton.visibility = View.VISIBLE
+        binding.tvFotoHeading.visibility = View.VISIBLE
+        binding.rvFoto.visibility = View.VISIBLE
+        binding.tvUlasanHeading.visibility = View.VISIBLE
+        binding.rvUlasan.visibility = View.VISIBLE
+        binding.starRating.visibility = View.VISIBLE
+        binding.ratingText.visibility = View.VISIBLE
+        binding.btnPergi.visibility = View.VISIBLE
+
+        binding.btnClaim.visibility = View.INVISIBLE
+
+    }
+
     override fun onResume() {
         super.onResume()
         requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility =
             View.GONE
+
+        val isFromNotification = requireArguments().getBoolean("isEnteringRadius", false)
+        if (isFromNotification) {
+
+            Log.d("DetailMissionFragment", "isFromNotification")
+            binding.btnClaim.isEnabled = true
+            binding.btnClaim.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
+
+            bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+            bottomSheet.isDraggable = true
+            onCollapsedBottomSheet()
+            currentMission = viewModel.getCurrentMission(requireArguments().getString("id")!!)
+            geofencingClient = LocationServices.getGeofencingClient(requireActivity())
+            if (this::geofencingClient.isInitialized) {
+                removeGeofences()
+            }
+        } else {
+            Log.d("DetailMissionFragment", "isNotFromNotification")
+            binding.btnClaim.isEnabled = false
+            binding.btnClaim.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.light_gray))
+            binding.btnClaim.setOnClickListener {
+                Toast.makeText(requireContext(), "Silahkan kunjungi ke lokasi terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onPause() {

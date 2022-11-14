@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/transparent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="64dp">
@@ -45,7 +44,7 @@
             android:id="@+id/dialog_positive_button"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="@string/pergi"
+            android:text="@string/next_mission"
             android:textSize="18sp"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_medium"
