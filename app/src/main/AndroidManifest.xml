@@ -36,7 +36,9 @@
 
         <activity
             android:name=".MainActivity"
+            android:launchMode="standard"
             android:exported="false">
+            <nav-graph android:value="@navigation/main_navigation" />
         </activity>
 
         <receiver android:name=".utils.GeofenceBroadcastReceiver" />

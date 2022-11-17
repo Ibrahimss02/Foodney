@@ -8,20 +8,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.budiyev.android.codescanner.*
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentCameraBinding
+import com.raion.foodney.ui.mainScreens.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CameraFragment : Fragment() {
 
     private lateinit var binding: FragmentCameraBinding
+    private val viewModel by viewModels<MainViewModel>()
     private lateinit var codeScanner: CodeScanner
+
+    private lateinit var bottomSheet: BottomSheetBehavior<ConstraintLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +36,58 @@ class CameraFragment : Fragment() {
     ): View {
         binding = FragmentCameraBinding.inflate(layoutInflater)
 
+        val missionId = requireArguments().getString("id")!!
+
+        if (missionId != "none") {
+            viewModel.getCurrentMission(missionId)
+        }
+
+        setupBottomSheet()
+
+        return binding.root
+    }
+
+    private fun setupBottomSheet() {
+        bottomSheet = BottomSheetBehavior.from(binding.scanBottomSheet).apply {
+            isDraggable = false
+            state = BottomSheetBehavior.STATE_EXPANDED
+
+            addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                        startCamera()
+                    } else if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                        stopCamera()
+                    }
+                }
+
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                }
+            })
+        }
+
+        if (viewModel.currentMission.value != null) {
+            binding.ivScan.visibility = View.INVISIBLE
+            binding.tvScanMissionObjectiveSuccess.visibility = View.VISIBLE
+            binding.btnScan.text = getString(R.string.back_to_home)
+            binding.tvScanMissionObjective.text = getString(R.string.success)
+
+            binding.btnScan.setOnClickListener {
+                findNavController().navigate(R.id.action_cameraFragment_to_homeFragment)
+            }
+        } else {
+            binding.btnScan.setOnClickListener {
+                bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
+        binding.scanBottomSheet.visibility = View.VISIBLE
+    }
+
+    private fun stopCamera() {
+
+    }
+
+    private fun startCamera() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) ==
             PackageManager.PERMISSION_GRANTED
         ) {
@@ -36,8 +95,6 @@ class CameraFragment : Fragment() {
         } else {
             startScanning()
         }
-
-        return binding.root
     }
 
     private fun startScanning() {

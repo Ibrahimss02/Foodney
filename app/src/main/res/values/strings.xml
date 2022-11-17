@@ -86,4 +86,7 @@
     <string name="prototype_info_dialog">Aplikasi akan mendeteksi lokasi dan memunculkan notifikasi ketika memasuki radius lokasi. Anda dapat menggunakan Aplikasi Fake GPS atau untuk keperluan testing dapat menekan tombol merah untuk langsung mengklaim poin.</string>
     <string name="info_scan_objective">Beli menu apa aja, lalu pindai kode QR dari kasir</string>
     <string name="pindai">Pindai</string>
+    <string name="scan_mission_objective_success">Selamat Anda berhasil menyelesaikan misi dan mendapatkan reward tambahan</string>
+    <string name="back_to_home">Kembali ke Beranda</string>
+    <string name="success">Sukses</string>
 </resources>
