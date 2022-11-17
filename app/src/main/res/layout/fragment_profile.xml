@@ -59,7 +59,7 @@
                 android:layout_marginTop="24dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{viewModel.userProfile.name}"
+                android:text="Juna"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,19 +113,19 @@
                 app:layout_constraintTop_toTopOf="@id/tv_user_name" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/completedMissionRv"
-                warungMissionList="@{viewModel.userProfile.completedMission}"
-                android:layout_width="0dp"
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
+                android:clipToPadding="false"
+                warungMissionList="@{viewModel.missionList}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_mission"
                 app:layout_constraintTop_toBottomOf="@id/tv_mission"
                 tools:listitem="@layout/item_layout_mission" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
 </layout>
