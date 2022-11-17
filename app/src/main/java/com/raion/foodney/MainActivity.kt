@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
+    private lateinit var navController: NavController
     private val deviceQLater = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavBar.itemIconTintList = null
         val fragmentManager = supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment
-        val navController = fragmentManager.navController
+        navController = fragmentManager.navController
         binding.bottomNavBar.setupWithNavController(navController)
 
 
@@ -58,6 +60,13 @@ class MainActivity : AppCompatActivity() {
         } else true
 
         return foregroundPermission && backgroundPermission
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (this::navController.isInitialized) {
+            navController.handleDeepLink(intent)
+        }
     }
 
     private val requestPermissionLauncher = registerForActivityResult(

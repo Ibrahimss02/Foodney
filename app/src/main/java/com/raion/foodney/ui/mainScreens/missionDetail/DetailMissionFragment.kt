@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
@@ -175,7 +176,7 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
         bottomSheet = BottomSheetBehavior.from(binding.bottomSheetMission).apply {
             isDraggable = false
             state = BottomSheetBehavior.STATE_EXPANDED
-            peekHeight = 400
+            peekHeight = 550
 
             addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -234,8 +235,9 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
 
         val isFromNotification = requireArguments().getBoolean("isEnteringRadius", false)
         if (isFromNotification) {
+            NotificationManagerCompat.from(requireContext()).cancelAll()
 
-            Log.d("DetailMissionFragment", "isFromNotification")
+            bottomSheet.state = BottomSheetBehavior.STATE_COLLAPSED
             binding.btnClaim.isEnabled = true
             binding.btnClaim.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
 

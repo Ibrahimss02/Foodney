@@ -1,15 +1,14 @@
 package com.raion.foodney.ui.mainScreens
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.auth.User
 import com.raion.foodney.models.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainViewModel(private val state: SavedStateHandle) : ViewModel() {
 
@@ -52,13 +51,17 @@ class MainViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     fun getUserData() {
-        firebaseDatabase.child(auth.currentUser!!.uid).get().addOnSuccessListener {
-            _userProfile.value = it.getValue(Profile::class.java)
+        viewModelScope.launch(Dispatchers.IO) {
+            firebaseDatabase.child(auth.currentUser!!.uid).get().addOnSuccessListener {
+                _userProfile.value = it.getValue(Profile::class.java)
+            }
         }
     }
 
     private fun updateUserData(uid: String, profile: Profile) {
-        firebaseDatabase.child(uid).setValue(profile)
+        viewModelScope.launch(Dispatchers.IO) {
+            firebaseDatabase.child(uid).setValue(profile)
+        }
     }
 
     fun claimReward(mission: Mission) {
