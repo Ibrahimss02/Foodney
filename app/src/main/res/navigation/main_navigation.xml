@@ -51,5 +51,14 @@
             android:name="id"
             app:argType="string"
             android:defaultValue="none" />
+        <action
+            android:id="@+id/action_detailMissionFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.raion.foodney.ui.mainScreens.scanCamera.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera"/>
 </navigation>

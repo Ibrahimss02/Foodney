@@ -84,4 +84,6 @@
     <string name="three_digit_delim">%,d</string>
     <string name="leaderboard_user_level">Lv. %d</string>
     <string name="prototype_info_dialog">Aplikasi akan mendeteksi lokasi dan memunculkan notifikasi ketika memasuki radius lokasi. Anda dapat menggunakan Aplikasi Fake GPS atau untuk keperluan testing dapat menekan tombol merah untuk langsung mengklaim poin.</string>
+    <string name="info_scan_objective">Beli menu apa aja, lalu pindai kode QR dari kasir</string>
+    <string name="pindai">Pindai</string>
 </resources>

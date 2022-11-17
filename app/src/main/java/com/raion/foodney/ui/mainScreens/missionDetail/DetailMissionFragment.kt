@@ -155,7 +155,7 @@ class DetailMissionFragment : Fragment(), OnMapReadyCallback {
             viewModel.claimReward(currentMission)
             Toast.makeText(requireContext(), "Sukses mengklaim hadiah", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
-            findNavController().navigateUp()
+            findNavController().navigate(DetailMissionFragmentDirections.actionDetailMissionFragmentToCameraFragment())
         }
 
         btnCancel.setOnClickListener {
