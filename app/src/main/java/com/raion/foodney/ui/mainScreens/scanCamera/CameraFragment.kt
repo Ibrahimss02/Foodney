@@ -19,6 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.raion.foodney.R
 import com.raion.foodney.databinding.FragmentCameraBinding
 import com.raion.foodney.ui.mainScreens.MainViewModel
+import com.raion.foodney.ui.mainScreens.coupons.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -55,7 +56,11 @@ class CameraFragment : Fragment() {
             addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                        startCamera()
+                        if (this@CameraFragment::codeScanner.isInitialized) {
+                            codeScanner.startPreview()
+                        } else {
+                            requestCameraPermission()
+                        }
                     } else if (newState == BottomSheetBehavior.STATE_EXPANDED) {
                         stopCamera()
                     }
@@ -84,10 +89,12 @@ class CameraFragment : Fragment() {
     }
 
     private fun stopCamera() {
-
+        if (this::codeScanner.isInitialized) {
+            codeScanner.releaseResources()
+        }
     }
 
-    private fun startCamera() {
+    private fun requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) ==
             PackageManager.PERMISSION_GRANTED
         ) {
@@ -98,8 +105,8 @@ class CameraFragment : Fragment() {
     }
 
     private fun startScanning() {
-//        val scannerView: CodeScannerView = binding.viewFinder
-//        codeScanner = CodeScanner(requireContext(), scannerView)
+        val scannerView: CodeScannerView = binding.viewFinder
+        codeScanner = CodeScanner(requireContext(), scannerView)
         codeScanner.camera = CodeScanner.CAMERA_BACK
         codeScanner.formats = CodeScanner.ALL_FORMATS
 
@@ -108,66 +115,64 @@ class CameraFragment : Fragment() {
         codeScanner.isAutoFocusEnabled = true
         codeScanner.isFlashEnabled = false
 
-//        codeScanner.decodeCallback = DecodeCallback {
-//            lifecycleScope.launch(Dispatchers.Main) {
-//                Toast.makeText(
-//                    this,
-//                    "Yaay! Anda berada dalam kawasan  ${it.text}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
+        codeScanner.decodeCallback = DecodeCallback {
+            lifecycleScope.launch(Dispatchers.Main) {
+                Toast.makeText(
+                    requireContext(),
+                    "Yaay! Anda berada dalam kawasan  ${it.text}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
-//        codeScanner.errorCallback = ErrorCallback {
-//            lifecycleScope.launch(Dispatchers.Main) {
-//                Toast.makeText(
-//                    this,
-//                    "Inisiasi kamera gagal: ${it.message}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
+        codeScanner.errorCallback = ErrorCallback {
+            lifecycleScope.launch(Dispatchers.Main) {
+                Toast.makeText(
+                    requireContext(),
+                    "Inisiasi kamera gagal: ${it.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
-//        scannerView.setOnClickListener {
-//            codeScanner.startPreview()
-//        }
+        scannerView.setOnClickListener {
+            codeScanner.startPreview()
+        }
     }
 
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<String>,
-//        grantResults: IntArray,
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        if (requestCode == Constants.REQUEST_CODE_PERMISSIONS) {
-//            if (requestCode == 123) {
-//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(
-//                        this,
-//                        "Penggunaan kamera disetujui",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//                startScanning()
-//            } else {
-//                Toast.makeText(this, "Izinkan penggunaan kamera untuk scan", Toast.LENGTH_SHORT)
-//                    .show()
-//                findNavController().navigateUp()
-//            }
-//        }
-//    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == Constants.REQUEST_CODE_PERMISSIONS) {
+            if (requestCode == 123) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Penggunaan kamera disetujui",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                startScanning()
+            } else {
+                Toast.makeText(requireContext(), "Izinkan penggunaan kamera untuk scan", Toast.LENGTH_SHORT)
+                    .show()
+                requestCameraPermission()
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
         if (::codeScanner.isInitialized) {
-            codeScanner?.startPreview()
+            codeScanner.startPreview()
         }
     }
 
     override fun onPause() {
-        if (::codeScanner.isInitialized) {
-            codeScanner?.releaseResources()
-        }
         super.onPause()
+        stopCamera()
     }
 }
