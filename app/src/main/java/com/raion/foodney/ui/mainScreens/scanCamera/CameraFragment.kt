@@ -97,6 +97,8 @@ class CameraFragment : Fragment() {
 
             binding.btnScan.setOnClickListener {
                 findNavController().navigate(R.id.action_cameraFragment_to_homeFragment)
+                requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_bar).visibility = View.VISIBLE
+
             }
         } else {
             binding.btnScan.setOnClickListener {
